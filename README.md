@@ -10,4 +10,4 @@ This is a static site. GitHub Pages can publish it directly from the repository 
 
 - `cv-en.pdf` for the CV download button
 - `og-card.png` for social sharing previews
-- Replace the placeholder `https://example.com` metadata after the final domain is connected
+- `sofhrina.com` is the site's canonical custom domain

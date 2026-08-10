@@ -668,6 +668,10 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
       sp.innerHTML = '<span class="ph">Spotify link not set yet</span>';
     }
   });
+  if (tray) {
+    var selectedTrack = tray.querySelector('button[aria-pressed="true"]');
+    if (selectedTrack) selectedTrack.click();
+  }
 
   /* ---------- coverflow ---------- */
   var flows = {};

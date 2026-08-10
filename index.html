@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Huiru Feng · Maths, UCL</title>
+<meta name="description" content="Second-year Mathematics undergraduate at UCL. Statistical and machine learning methods, robust estimation, and clustering.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Huiru Feng · Maths, UCL">
+<meta property="og:description" content="Second-year Mathematics undergraduate at UCL. I keep a taxonomy of my own mathematical errors and work through them one category at a time.">
+<meta property="og:image" content="og-card.png">
+<meta property="og:url" content="https://example.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Huiru Feng · Maths, UCL">
+<meta name="twitter:description" content="Second-year Mathematics undergraduate at UCL. I keep a taxonomy of my own mathematical errors and work through them one category at a time.">
+<meta name="twitter:image" content="og-card.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237851A9'/><text x='16' y='23' font-size='17' font-family='Georgia,serif' fill='%23F5C518' text-anchor='middle'>H</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --violet-1:#9B72CC; --violet-2:#7851A9; --violet-3:#3F2668; --violet-deep:#2A1848;
+  --cream:#FBF3E2; --cream-2:#F5E9D0;
+  --yellow:#F5C518; --yellow-soft:#F7D45C; --yellow-ink:#5A4100;
+  --ink:#1E1830; --ink-2:#5E5670; --ink-3:#948CA8;
+  --hair:#EFE9F5;
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 30,"WONK" 1;font-weight:500;line-height:1.05;margin:0}
+a{color:inherit}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.screen{position:relative;background:linear-gradient(152deg,var(--violet-1) 0%,var(--violet-2) 40%,var(--violet-3) 76%,var(--violet-deep) 100%);overflow:hidden;padding-bottom:140px}
+.menubar{display:flex;justify-content:space-between;align-items:center;height:30px;padding:0 18px;background:rgba(255,255,255,.14);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#F3EBFF;font-size:12px;position:relative;z-index:60}
+.menubar .mono{color:#EBDFFA}
+
+.stage{max-width:1240px;margin:0 auto;padding:34px 26px 0;display:grid;grid-template-columns:1fr 1.34fr 1fr;gap:26px;align-items:start}
+.col{display:flex;flex-direction:column}
+
+.win{background:#fff;border-radius:16px;box-shadow:0 16px 40px rgba(30,10,60,.28),0 2px 6px rgba(30,10,60,.14);overflow:hidden;margin-bottom:16px;transition:transform .32s var(--spring),box-shadow .32s ease}
+.win:hover{transform:translateY(-6px) rotate(0deg) scale(1.012);box-shadow:0 30px 62px rgba(30,10,60,.36);z-index:20;position:relative}
+.bar{display:flex;align-items:center;gap:7px;padding:9px 13px;border-bottom:1px solid var(--hair);user-select:none}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.d1{background:#FF5F57}.d2{background:#FEBC2E}.d3{background:#28C840}
+.bar .t{margin-left:6px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);letter-spacing:.04em}
+.pad{padding:16px 20px}
+.tilt-a{transform:rotate(-1.5deg)}.tilt-b{transform:rotate(1.1deg)}.tilt-c{transform:rotate(-2.2deg)}
+.tilt-d{transform:rotate(1.8deg)}.tilt-e{transform:rotate(-.8deg)}.tilt-f{transform:rotate(2.4deg)}
+.out-l{margin-left:-20px}.out-r{margin-right:-22px}.nudge{margin-left:14px}
+
+/* left */
+.w-name{background:var(--cream)}
+.w-name .big{font-family:Fraunces;font-size:clamp(38px,4.2vw,56px);line-height:.94;font-variation-settings:"SOFT" 40,"WONK" 1;letter-spacing:-.025em;margin:2px 0 0}
+.w-name .rule{height:3px;background:var(--yellow);margin:14px 0 10px;width:62px}
+.w-about .lead{font-size:17px;line-height:1.4;margin:0 0 11px}
+.w-about p{margin:0 0 10px;font-size:13.5px;line-height:1.66;color:var(--ink-2)}
+.fillme{border-left:3px solid var(--yellow);padding:6px 0 6px 13px;margin-top:13px;font-size:12.5px;color:var(--ink-3)}
+.grade{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--hair);font-size:13.5px}
+.grade:last-child{border:0}
+.grade span:last-child{color:#7851A9}
+
+/* centre */
+.w-res h3{font-size:21px;margin:13px 0 5px;line-height:1.2}
+.meta{font-size:11.5px;color:var(--ink-3);margin:0}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;background:var(--yellow);color:var(--yellow-ink);padding:5px 11px;border-radius:999px;white-space:nowrap}
+.role{display:flex;gap:12px;margin-bottom:14px}
+.tile{flex:none;width:33px;height:33px;border-radius:9px;background:#F0E9FA;color:#6B4E9E;font-family:"IBM Plex Mono",monospace;font-size:11px;display:flex;align-items:center;justify-content:center}
+.role b{display:block;font-weight:500;font-size:14.5px;line-height:1.35}
+.role span{font-size:11.5px;color:var(--ink-3)}
+.more{font-size:13px;color:#6B3FA0;text-decoration:none;font-weight:500}
+.repo{display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.03em;color:#6B3FA0;text-decoration:none;background:var(--cream);border:1px solid #E6DCC6;border-radius:8px;padding:5px 11px;margin:2px 6px 10px 0;transition:background .2s}
+.repo:hover{background:var(--yellow);border-color:var(--yellow);color:var(--yellow-ink)}
+
+/* right */
+.entry{padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--hair)}
+.entry:last-of-type{border:0;margin-bottom:9px}
+.entry b{display:block;font-weight:500;font-size:14px;line-height:1.35;margin-bottom:3px}
+.entry span{font-size:12px;color:var(--ink-3);line-height:1.45}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:5px;background:var(--cream-2);color:#8A6D1F;margin-bottom:5px}
+.tag.t2{background:#F0E9FA;color:#6B4E9E}
+.hob{display:flex;gap:11px;align-items:center;padding:9px 0;border-bottom:1px solid var(--hair);font-size:13.5px}
+.hob:last-child{border:0}
+.hob i{flex:none;width:29px;height:29px;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px}
+.w-cv{background:var(--cream)}
+.cvrow{display:flex;gap:8px;margin-top:11px}
+.cvbtn{flex:1;text-align:center;padding:8px 0;border-radius:9px;background:#fff;border:1px solid #E6DCC6;font-size:12.5px;text-decoration:none;color:var(--ink);transition:transform .22s var(--spring),background .2s}
+.cvbtn:hover{background:var(--yellow);border-color:var(--yellow);transform:translateY(-2px)}
+.w-now{background:rgba(255,255,255,.15);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.3)}
+.w-now .bar{border-bottom-color:rgba(255,255,255,.24)}
+.w-now .bar .t{color:#E7DBF8}
+.w-now li{list-style:none;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.2);font-size:13.5px;color:#fff;line-height:1.45}
+.w-now li:last-child{border:0;padding-bottom:0}
+.w-now ul{margin:0;padding:0}
+
+/* stickies */
+.sticky{background:var(--yellow-soft);border-radius:3px;padding:15px 17px;box-shadow:0 14px 30px rgba(30,10,60,.3);margin-bottom:22px;transition:transform .3s var(--spring)}
+.sticky p{margin:0;font-family:Fraunces;font-size:15px;line-height:1.38;letter-spacing:.02em;text-transform:uppercase;color:var(--yellow-ink)}
+.sticky small{display:block;margin-top:8px;font-size:10.5px;color:#907012;font-family:"IBM Plex Mono",monospace;letter-spacing:.06em}
+.sticky:hover{transform:rotate(0deg) scale(1.035)}
+.sticky.s1{transform:rotate(-7deg);width:78%;margin-left:auto;margin-right:-10px}
+.sticky.s2{transform:rotate(4.5deg);width:76%;margin-left:-8px}
+.sticky.s2 p{font-family:Fraunces,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;font-size:17px;line-height:1.45}
+.sticky.s3{transform:rotate(-4deg);width:82%}
+
+/* social + linkedin preview */
+.social{display:flex;gap:11px;margin:2px 0 24px 4px;position:relative}
+.social a{width:46px;height:46px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink);text-decoration:none;box-shadow:0 8px 20px rgba(30,10,60,.24);transition:transform .3s var(--spring)}
+.social a:hover{transform:translateY(-7px) scale(1.1) rotate(0)!important}
+.social a:nth-child(1){transform:rotate(-4deg)}
+.social a:nth-child(2){transform:rotate(2deg)}
+.social a:nth-child(3){transform:rotate(-1deg)}
+.social a:nth-child(4){transform:rotate(4deg);font-size:16px}
+.social svg{width:21px;height:21px;fill:currentColor}
+.hasprev{position:relative}
+.prev{position:absolute;left:-6px;top:58px;width:296px;background:#fff;border-radius:13px;box-shadow:0 20px 46px rgba(20,6,44,.34);padding:7px;opacity:0;visibility:hidden;transform:translateY(-8px) scale(.97);transition:.24s var(--spring);z-index:50;pointer-events:none;overflow:hidden}
+.hasprev:hover .prev,.hasprev:focus-within .prev{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.prev img{display:block;width:100%;border-radius:8px}
+.prev .cap{display:flex;justify-content:space-between;align-items:center;padding:9px 5px 3px;font-size:11.5px;color:var(--ink-3)}
+.prev .cap b{font-weight:500;color:#6B3FA0}
+
+/* cat + dock */
+.catwrap{position:relative;display:flex;justify-content:center;margin-top:6px}
+.cat{width:118px;transition:transform .4s var(--spring);cursor:pointer}
+.catwrap:hover .cat{transform:translateY(-9px) rotate(-4deg)}
+.cat .tail{transform-origin:18px 70px;animation:flick 4.5s ease-in-out infinite}
+@keyframes flick{0%,84%,100%{transform:rotate(0)}90%{transform:rotate(-13deg)}95%{transform:rotate(6deg)}}
+.catsay{position:absolute;right:100%;top:14px;margin-right:12px;background:var(--cream);border-radius:14px 14px 3px 14px;padding:9px 14px;font-family:Fraunces;font-size:13.5px;white-space:nowrap;box-shadow:0 10px 24px rgba(30,10,60,.26);opacity:0;transform:translateY(6px);transition:.28s ease}
+.catwrap:hover .catsay{opacity:1;transform:translateY(0)}
+
+.dock{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;gap:10px;padding:10px 13px;background:rgba(255,255,255,.17);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.3);border-radius:22px;z-index:40}
+.dock a{width:54px;height:54px;border-radius:15px;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--ink);transition:transform .28s var(--spring)}
+.dock a:nth-child(2n){background:#fff}
+.dock a.accent{background:var(--yellow)}
+.dock a:hover{transform:translateY(-14px) scale(1.22)}
+.dock a svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.dock a b{font-family:"IBM Plex Mono",monospace;font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:400}
+
+
+
+
+
+/* ---- the rest of me ---- */
+.cdp{background:#241B36;border-radius:18px;padding:22px;color:#F0E9FB;margin:6px 0 10px}
+.deck{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.case{flex:none;width:184px;height:184px;border-radius:20px;background:#F3EDE0;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 2px 10px rgba(0,0,0,.14)}
+.disc{border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;background:conic-gradient(from 0deg,var(--c1),var(--c2),var(--c1),var(--c2),var(--c1))}
+.disc::after{content:"";position:absolute;width:22%;height:22%;border-radius:50%;background:#F3EDE0;box-shadow:0 0 0 5px rgba(255,255,255,.34)}
+.disc::before{content:"";position:absolute;inset:12%;border-radius:50%;border:1px solid rgba(255,255,255,.28)}
+.disc b{position:absolute;top:15%;font-family:Fraunces,serif;font-style:italic;font-weight:500;font-size:15px;color:#1E1830;text-align:center;line-height:1.05;max-width:74%}
+.disc.big{width:158px;height:158px;animation:spin 6s linear infinite}
+.disc.big.paused{animation-play-state:paused}
+@keyframes spin{to{transform:rotate(360deg)}}
+.deckinfo{min-width:190px;flex:1}
+.deckinfo .pnote{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#A594C8;margin:0 0 6px}
+.deckinfo h4{margin:0;font-family:Fraunces,serif;font-weight:500;font-size:26px;line-height:1.1}
+.deckinfo p{margin:6px 0 0;font-size:12.5px;color:#B8A9D6}
+#sp{margin-top:14px;border-radius:12px;overflow:hidden;min-height:80px;background:#2E2444;display:flex;align-items:center;justify-content:center}
+#sp iframe{display:block;width:100%;border:0}
+#sp .ph{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;color:#7E6FA0;padding:22px 12px;text-align:center}
+.tray{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid #3A2E52}
+.tray button{background:none;border:0;padding:0;cursor:pointer;text-align:center;transition:transform .3s var(--spring)}
+.tray button:hover{transform:translateY(-6px)}
+.tray .disc{width:62px;height:62px}
+.tray .disc b{font-size:9px;top:17%}
+.tray small{display:block;margin-top:7px;font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.08em;color:#9C8DBC}
+.tray button[aria-pressed="true"] small{color:var(--yellow)}
+
+/* coverflow */
+.flow{position:relative;height:326px;margin:6px 0 4px;perspective:1500px;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}
+.flow.drag{cursor:grabbing}.flow.drag .cf{transition:none}
+.cf{position:absolute;left:50%;top:50%;width:196px;height:266px;margin:-133px 0 0 -98px;border-radius:11px;padding:17px 16px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;box-shadow:0 20px 44px rgba(30,10,60,.42);transition:transform .55s cubic-bezier(.2,.85,.25,1),opacity .45s ease;will-change:transform;backface-visibility:hidden}
+.cf.off{display:none}
+.cf-cat{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.72}
+.cf h5{font-family:Fraunces,serif;font-weight:500;font-size:23px;line-height:1.12;margin:0}
+.cf small{font-size:11.5px;opacity:.78}
+.flow-nav{display:flex;align-items:center;gap:14px;margin:2px 0 16px}
+.flow-nav button{width:34px;height:34px;border-radius:50%;border:1px solid #E3D9EE;background:#fff;color:var(--ink);font-size:16px;line-height:1;cursor:pointer;transition:.2s}
+.flow-nav button:hover{background:var(--yellow);border-color:var(--yellow)}
+.flow-idx{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-3)}
+.flow-hint{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-left:auto}
+.filters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 10px;padding:0;list-style:none}
+.filters button{font-size:12.5px;padding:5px 13px;border-radius:999px;border:1px solid #E3D9EE;background:#fff;cursor:pointer;color:var(--ink);transition:.2s}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* map */
+.mapwrap{position:relative;background:var(--cream);border-radius:14px;padding:8px;margin:4px 0 10px}
+#worldmap{display:block;width:100%;height:auto}
+#worldmap .land{fill:#E6DCC6;stroke:#FBF3E2;stroke-width:.5}
+#worldmap .been{fill:#7851A9}
+#worldmap .cn{fill:#F5C518;stroke:#5A4100;stroke-width:.4}
+#worldmap .land:hover,#worldmap .been:hover{fill:#5A3B85;cursor:default}
+.maptip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;padding:4px 9px;border-radius:6px;opacity:0;transition:opacity .18s}
+.mapfall{display:none}
+.mapmsg{font-size:13px;line-height:1.6;color:var(--ink-2);padding:26px 22px;margin:0;text-align:center}
+.mapmsg code{font-family:"IBM Plex Mono",monospace;font-size:12px;background:#fff;border:1px solid #E6DCC6;border-radius:5px;padding:2px 7px}
+.counts{display:flex;gap:26px;margin:2px 0 12px;flex-wrap:wrap}
+.counts div b{display:block;font-family:Fraunces,serif;font-weight:500;font-size:44px;line-height:1;color:#7851A9}
+.counts div span{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.legend{display:flex;gap:18px;margin:8px 0 0;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0;list-style:none}
+.chips li{background:var(--cream);border:1px solid #EFE4CC;border-radius:8px;padding:5px 11px;font-size:13px}
+.grp{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 7px}
+@media(max-width:760px){
+  .flow{height:auto;perspective:none;overflow-x:auto;display:flex;gap:12px;scroll-snap-type:x mandatory;padding-bottom:10px}
+  .cf{position:static!important;margin:0;flex:none;transform:none!important;opacity:1!important;scroll-snap-align:center}
+  .flow-nav button{display:none}
+  .case{width:150px;height:150px}.disc.big{width:128px;height:128px}
+}
+@media(prefers-reduced-motion:reduce){.disc.big{animation:none}.cf{transition:none}}
+
+/* sections */
+main{max-width:900px;margin:0 auto;padding:52px 24px 24px}
+section{margin-bottom:46px;scroll-margin-top:22px}
+.sec-win{background:#fff;border-radius:16px;box-shadow:0 10px 34px rgba(60,30,110,.11);overflow:hidden}
+.sec-win .pad{padding:26px 34px 30px}
+section h2{font-size:clamp(28px,3.6vw,40px);letter-spacing:-.02em;margin-bottom:5px}
+section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
+section h3{font-size:19px;margin:22px 0 3px}
+section h3:first-of-type{margin-top:0}
+.when{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;color:#7851A9;margin:0 0 9px}
+section p{margin:0 0 11px;max-width:66ch;font-size:15px;line-height:1.62}
+.status{display:inline-block;background:var(--cream-2);border-radius:8px;padding:6px 12px;font-size:12.5px;color:var(--ink-2);margin-bottom:4px}
+.mods{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
+.mods li{background:var(--cream);border-radius:7px;padding:4px 10px;font-size:12.5px}
+.divider{height:1px;background:var(--hair);margin:24px 0}
+footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font-size:13.5px}
+
+@media(max-width:1060px){
+  .stage{grid-template-columns:1fr 1fr}
+  .col-r{grid-column:span 2}
+}
+@media(max-width:760px){
+  .stage{grid-template-columns:1fr;padding:22px 16px 0;gap:0}
+  .col-r{grid-column:auto}
+  .win,.sticky{transform:none!important;margin-left:0!important;margin-right:0!important;width:auto!important}
+  .win:hover{transform:none!important}
+  .prev{display:none}
+  .dock{position:static;transform:none;margin:24px auto 0;width:max-content;max-width:100%;flex-wrap:wrap;justify-content:center}
+  .catsay{display:none}
+  main{padding:56px 20px 30px}
+  .sec-win .pad{padding:26px 22px 30px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="screen">
+  <div class="menubar"><span class="mono">Huiru Feng</span><span class="mono">London</span></div>
+
+  <div class="stage">
+
+    <!-- ============ LEFT : who I am ============ -->
+    <div class="col col-l">
+
+      <article class="win w-name tilt-a out-l">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">hello.txt</span></div>
+        <div class="pad">
+          <h1 class="big">Huiru<br>Feng</h1>
+          <div class="rule"></div>
+          <p class="mono" style="color:var(--ink-3);margin:0">Mathematics BSc · UCL</p>
+        </div>
+      </article>
+
+      <div class="social">
+        <a href="https://github.com/sofhrina" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>
+        <span class="hasprev">
+          <a href="https://www.linkedin.com/in/huirufeng429/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5M3 9h4v12H3zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4z"/></svg></a>
+          <span class="prev" role="tooltip">
+            <img src="linkedin-preview.png" alt="Preview of Huiru Feng's LinkedIn profile" loading="lazy">
+            <span class="cap"><span>linkedin.com/in/huirufeng429</span><b>Open →</b></span>
+          </span>
+        </span>
+        <a href="https://www.instagram.com/sofhrina/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.25.15 4.77 1.7 4.92 4.92.06 1.28.07 1.67.07 4.9s-.01 3.6-.07 4.9c-.15 3.2-1.66 4.76-4.92 4.91-1.3.06-1.68.07-4.9.07s-3.6-.01-4.9-.07c-3.26-.15-4.77-1.72-4.92-4.92C2.13 15.6 2.12 15.2 2.12 12s.01-3.6.07-4.9C2.34 3.9 3.85 2.34 7.1 2.19 8.4 2.13 8.8 2.2 12 2.2m0 3.1a6.7 6.7 0 1 0 0 13.4 6.7 6.7 0 0 0 0-13.4m0 11a4.3 4.3 0 1 1 0-8.6 4.3 4.3 0 0 1 0 8.6m6.97-11.3a1.57 1.57 0 1 0 0 3.14 1.57 1.57 0 0 0 0-3.13"/></svg></a>
+        <a href="https://weibo.com/u/7567979078" aria-label="Weibo" style="font-family:Inter;font-size:16px">微</a>
+      </div>
+
+      <article class="win w-about tilt-b nudge">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">about.txt</span></div>
+        <div class="pad">
+          <p class="lead">Nineteen, reading maths at UCL.</p>
+          <p style="margin-bottom:0">I keep a taxonomy of my own mathematical errors and work through them one category at a time. I have come to trust a plan that can be revised over one that has to be defended.</p>
+        </div>
+      </article>
+
+      <aside class="sticky s1"><p>The Best is Yet to Come</p><small>signature</small></aside>
+
+      <article class="win w-acad tilt-c out-l">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">academic</span></div>
+        <div class="pad">
+          <div class="grade"><span>UCL Maths BSc, Year 1</span><span>First · 75+</span></div>
+          <div class="grade"><span>A-Levels</span><span>A*A*A*A</span></div>
+          <p style="margin:12px 0 0;font-size:12.5px;line-height:1.6;color:var(--ink-2)">Jinan Foreign Language School, International Centre.<br>Planning to continue to a master's and then a PhD.</p>
+          <a class="more" href="#academic" style="display:inline-block;margin-top:12px">Modules →</a>
+        </div>
+      </article>
+
+      <article class="win w-cv tilt-d nudge">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">cv</span></div>
+        <div class="pad" style="padding:13px 16px">
+          <p class="mono" style="margin:0;color:var(--ink-3)">One page · Aug 2026</p>
+          <div class="cvrow">
+            <a class="cvbtn" href="cv-en.pdf">Download CV</a>
+          </div>
+          <!-- 中文版做好之后，把上面一行换成下面两行，并把 cv-cn.pdf 放进同一个文件夹：
+          <a class="cvbtn" href="cv-en.pdf">English</a>
+          <a class="cvbtn" href="cv-cn.pdf">中文</a>
+          -->
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ============ CENTRE : what I do ============ -->
+    <div class="col col-c">
+
+      <article class="win w-res tilt-b">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">research</span></div>
+        <div class="pad">
+          <svg viewBox="0 0 300 104" style="width:100%;height:104px" role="img" aria-label="Cluster scatter illustration">
+            <circle cx="40" cy="76" r="6.5" fill="#7851A9"/><circle cx="62" cy="60" r="6.5" fill="#7851A9"/><circle cx="28" cy="54" r="6.5" fill="#7851A9"/><circle cx="72" cy="86" r="6.5" fill="#7851A9"/><circle cx="50" cy="91" r="6.5" fill="#7851A9"/>
+            <circle cx="142" cy="34" r="6.5" fill="#F5C518"/><circle cx="166" cy="48" r="6.5" fill="#F5C518"/><circle cx="122" cy="51" r="6.5" fill="#F5C518"/><circle cx="156" cy="19" r="6.5" fill="#F5C518"/>
+            <circle cx="232" cy="78" r="6.5" fill="#B98FD4"/><circle cx="256" cy="62" r="6.5" fill="#B98FD4"/><circle cx="221" cy="57" r="6.5" fill="#B98FD4"/><circle cx="266" cy="86" r="6.5" fill="#B98FD4"/><circle cx="242" cy="94" r="6.5" fill="#B98FD4"/>
+            <circle cx="282" cy="17" r="6.5" fill="#DCD5E8"/>
+          </svg>
+          <h3>Hierarchical segmentation under a robust loss</h3>
+          <p class="meta">Draft · methodology complete, experiments pending</p>
+          <div class="divider" style="margin:18px 0"></div>
+          <h3 style="font-size:19px">Fallacy detection in UK parliamentary debate</h3>
+          <p class="meta">Dataset construction · with a PhD researcher at UCL · student journal, late 2026</p>
+          <a class="more" href="#research" style="display:inline-block;margin-top:14px">Read more →</a>
+        </div>
+      </article>
+
+      <article class="win w-career tilt-e">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">career</span></div>
+        <div class="pad">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span class="mono" style="color:var(--ink-3)">Experience</span>
+            <span class="chip">open to summer 2027</span>
+          </div>
+          <div class="role"><span class="tile">IG</span><div><b>Algorithm Team Intern</b><span>Inspur Group · Aug 2026 –</span></div></div>
+          <div class="role"><span class="tile">IG</span><div><b>Front-end Development Intern</b><span>Inspur Group · Jun – Aug 2026</span></div></div>
+          <div class="role"><span class="tile">DS</span><div><b>Head of Project Labs</b><span>UCL Data Science Society · Mar 2026 –</span></div></div>
+          <div class="role"><span class="tile">LU</span><div><b>Maths Teaching Assistant</b><span>Lumi Summer School · Jul 2025</span></div></div>
+          <a class="more" href="#career">Full history →</a>
+        </div>
+      </article>
+
+      <aside class="sticky s2"><p>시작은 미약하였으나<br>끝은 창대하리라</p><small>BTS</small></aside>
+
+      <article class="win w-proj tilt-d">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">projects</span></div>
+        <div class="pad">
+          <div class="entry"><b>Algorithms and Big-O</b><span>Four sorts from scratch, empirical timing, and a decision-tree lower-bound argument.</span></div>
+          <div class="entry"><b>Strategic M&amp;A valuation</b><span>DCF, comps and WACC on a semiconductor case. Cross-university team.</span></div>
+          <div class="entry"><b>Cross-sectional alpha, auto sector</b><span>Team project. Being rewritten from scratch.</span></div>
+          <a class="more" href="#projects">All projects →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ============ RIGHT : outside the work ============ -->
+    <div class="col col-r">
+
+      <article class="win w-now tilt-c out-r">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">currently</span></div>
+        <div class="pad" style="padding-top:10px">
+          <ul>
+            <li>Writing up the k-means factor model</li>
+            <li>Building the parliamentary fallacy dataset</li>
+            <li>Algorithm internship at Inspur</li>
+            <li>Preparing for the GRE</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="win w-blog tilt-b">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div>
+        <div class="pad">
+          <div class="entry"><span class="tag t2">journal</span><b>On courage, and being encouraged</b><span>Having been encouraged is probably what teaches you the weight of the word discouraged.</span></div>
+          <a class="more" href="#journal">Every entry →</a>
+        </div>
+      </article>
+
+      <aside class="sticky s3"><p>Hide in the Light</p><small>Stranger Things · Max</small></aside>
+
+      <article class="win w-hob tilt-f out-r">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">the rest of me</span></div>
+        <div class="pad">
+                    <div class="hob"><i>&#9834;</i><span>BTS, TWICE, HEARTS2HEARTS</span></div>
+          <div class="hob"><i>&#9672;</i><span>Seven books I keep going back to</span></div>
+          <div class="hob"><i>&#9781;</i><span>34 films and series worth the time</span></div>
+          <div class="hob"><i>&#9992;</i><span>16 provinces, 16 countries</span></div>
+          <a class="more" href="#more" style="display:inline-block;margin-top:11px">Have a look →</a>
+        </div>
+      </article>
+
+      <div class="catwrap">
+        <span class="catsay">Not that I care. But you've got this.</span>
+        <svg class="cat" viewBox="0 0 120 108" role="img" aria-label="A slightly haughty cat">
+          <title>A slightly haughty cat</title>
+          <path class="tail" d="M22 78 C 2 74, 6 44, 22 42 C 12 52, 14 68, 30 70 Z" fill="#241B36"/>
+          <path d="M40 46 C 40 30, 82 30, 82 46 L 88 96 C 88 102, 34 102, 34 96 Z" fill="#241B36"/>
+          <circle cx="61" cy="34" r="25" fill="#241B36"/>
+          <path d="M40 18 L 38 2 L 55 13 Z" fill="#241B36"/>
+          <path d="M82 18 L 85 2 L 68 13 Z" fill="#241B36"/>
+          <path d="M43 17 L 42.5 8 L 51 14 Z" fill="#F5C518"/>
+          <path d="M79 17 L 80 8 L 72 14 Z" fill="#F5C518"/>
+          <path d="M47 33 C 50 29, 55 29, 58 33" stroke="#F5C518" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <path d="M65 33 C 68 29, 73 29, 76 33" stroke="#F5C518" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <path d="M59 41 L 63 41 L 61 44 Z" fill="#F5C518"/>
+          <path d="M56 96 a 6 6 0 0 1 12 0" fill="#3E3055"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <nav class="dock" aria-label="Sections">
+    <a href="#about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg><b>About</b></a>
+    <a href="#academic"><svg viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><b>Academic</b></a>
+    <a href="#research" class="accent"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><b>Research</b></a>
+    <a href="#projects"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg><b>Projects</b></a>
+    <a href="#career"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg><b>Career</b></a>
+    <a href="#journal"><svg viewBox="0 0 24 24"><path d="M5 4h13a1 1 0 0 1 1 1v15H6a1 1 0 0 1-1-1z"/><path d="M9 4v16"/></svg><b>Journal</b></a>
+    <a href="#more"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg><b>More</b></a>
+  </nav>
+</div>
+
+<main>
+
+  <section id="about"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">about</span></div><div class="pad">
+    <h2>About</h2>
+    <p class="kicker">Second-year Mathematics undergraduate at UCL.</p>
+    <p>At nineteen, I am studying mathematics in the UK as a Chinese student. My childhood in Shandong made me aware of the quiet script written for many women: study hard, find security, marry well, and shape a life around the expectations of others. While other children dreamed of meeting Prince Charming, my ambition was to create something of my own.</p>
+    <p>Data science, artificial intelligence, and the wider world of ideas hold a particular fascination for me. Answers alone rarely satisfy me. What matters is the reasoning beneath them and the freedom to question them.</p>
+    <p>Ambition becomes manageable through systems. I keep a taxonomy of my own mathematical errors, from skipped steps to final-line miscalculations to proofs argued in the wrong direction, and work through them one category at a time. I have come to trust a plan that can be revised more than one that has to be defended.</p>
+    <p>Writing, reflection, and tears are how I make sense of an inner world. Wisdom, to me, begins with the willingness to ask why a thought or feeling exists.</p>
+    <p>The woman I hope to become is brave, free, and grounded. She feels fear and doubt, and makes her choices anyway. She defines her life on her own terms. She can lose her footing, understand why, and stand again.</p>
+    <p style="color:var(--ink-3);border-left:3px solid var(--yellow);padding-left:16px;font-family:Fraunces;font-size:16px">I am no bird; and no net ensnares me: I am a free human being with an independent will.<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em">charlotte brontë · jane eyre</span></p>
+  </div></div></section>
+
+  <section id="academic"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">academic</span></div><div class="pad">
+    <h2>Academic</h2>
+    <p class="kicker">BSc Mathematics (G100), UCL · 2025–2028 · Year 1: First class, 75+</p>
+    <h3>Year 1</h3>
+    <ul class="mods"><li>Real Analysis</li><li>Abstract Algebra</li><li>Number Theory</li><li>Linear Algebra</li><li>ODEs and PDEs</li><li>Newtonian Mechanics</li><li>Vector Calculus</li><li>Probability</li><li>Python</li></ul>
+    <h3>Year 2</h3>
+    <ul class="mods"><li>Complex Analysis</li><li>Further Linear Algebra</li><li>Metric Spaces</li><li>Fourier Series</li><li>Probability and Statistics</li><li>Machine Reasoning</li><li>Computational Methods</li><li>Fluid Mechanics</li></ul>
+    <div class="divider"></div>
+    <h3>Before UCL</h3>
+    <p class="when">2022 – 2025 · Jinan Foreign Language School, International Centre</p>
+    <p>A*A*A*A in Mathematics, Further Mathematics, Economics and Physics.</p>
+    <div class="divider"></div>
+    <h3>Where this is going</h3>
+    <p>I plan to continue to a master's and then a PhD. For now that mostly means learning to do research properly rather than quickly. Reading the methods literature carefully, and getting used to writing down what I do not yet know.</p>
+  </div></div></section>
+
+  <section id="research"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">research</span></div><div class="pad">
+    <h2>Research</h2>
+    <p class="kicker">Both projects are in progress. Drafts available on request.</p>
+    <h3>Robust factor decomposition for hierarchical consumer segmentation</h3>
+    <p class="when">Jul 2026 – present · with a PhD mentor</p>
+    <p>Standard k-means fails on high-dimensional consumer data for reasons that look like three separate problems but trace back to two design choices. Euclidean distance assumes dimensions are orthogonal and comparably scaled, so correlated features get counted more than once; and a single flat partition cannot express nested structure like "spending tier → price sensitivity".</p>
+    <p>I'm working on a pipeline that replaces the hand-set decisions, meaning thresholds, cluster count and factor weights, with parameters learned from the data: a robust loss in place of maximum likelihood, learnable factor weights under an L1 penalty, and two-level clustering so one result can be read at whichever granularity a decision needs. I wrote the abstract, introduction and methodology chapters.</p>
+    <p class="status">Methodology drafted. Experiments not yet run, so there are no results to report.</p>
+    <div class="divider"></div>
+    <h3>Fallacy detection in UK parliamentary debate</h3>
+    <p class="when">Apr 2026 – present · with a PhD researcher at UCL · student journal, late 2026</p>
+    <p>A small team project on argument mining. The work started as multimodal fallacy detection and narrowed over three months to a text-based dataset.</p>
+    <p>My contributions: proposing the UK parliamentary questioning setting, identifying a workable label set, and building the annotated dataset using argumentation framework structures and IAT-style argument graphs. The main text is written by the PhD researcher leading the project.</p>
+  </div></div></section>
+
+  <section id="projects"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">projects</span></div><div class="pad">
+    <h2>Projects</h2>
+    <p class="kicker">Things I built, including one I'm taking apart again.</p>
+    <h3>Algorithms and Big-O</h3>
+    <p class="when">May – Jun 2026 · Python, Matplotlib · UCL Year 1 summer project</p>
+    <p>I implemented bubble sort, merge sort, quicksort and counting sort from scratch in Python, without library shortcuts, so that the cost of every operation stayed visible in the code. I then designed timing experiments across input sizes from 100 to 10,000 elements and plotted the results on a logarithmic scale, which made the separation between O(n²), O(n log n) and O(n + k) growth something I could see rather than something I had been told.</p>
+    <p>The theory turned out to be the part I got most out of. I worked through the decision tree argument for the Ω(n log n) lower bound on comparison based sorting. Any algorithm restricted to pairwise comparisons has to distinguish between n! possible orderings, so its decision tree needs at least n! leaves, and a binary tree with n! leaves has depth at least log₂(n!), which is Θ(n log n). Counting sort escapes the bound because it never compares two elements with each other at all. It reads their values directly and uses them as indices, which only works when the range of values is known and bounded.</p>
+    <p>Writing up the proof in English rather than in symbols was harder than the implementation, and it was the first time I understood the difference between following an argument and being able to reconstruct it.</p>
+    <h3>Cross-sectional alpha strategy, auto sector</h3>
+    <p class="when">Jan – Mar 2026 · team project, UCL Data Science Society · being rewritten</p>
+    <p>A cross-sectional ranking pipeline over nine global automotive equities. Raw prices were converted to daily returns to line up trading hours across time zones, momentum, volatility and RSI factors were ranked within each cross-section so that absolute levels became percentiles, and the model was a depth constrained Random Forest scored with Spearman rank IC rather than RMSE, because what matters is the ordering of the names and not the size of the error.</p>
+    <p><a class="repo" href="https://github.com/sofhrina/auto_stock_strategy">github · auto_stock_strategy</a></p>
+    <p>I am rewriting it from scratch. The reported Sharpe ratio was high enough that it almost certainly hides a bug, most likely look ahead bias or an absence of transaction costs, and I want to be able to say what every line does before I put my name on the result.</p>
+    <h3>Strategic M&amp;A valuation</h3>
+    <p class="when">Feb – Mar 2026 · cross-university team (UCL, Cambridge, LSE, Imperial)</p>
+    <p>Our team acted for Samsung Electronics and had to pick an acquisition target in the semiconductor sector, then defend the price we put on it. We screened candidates and settled on Lattice Semiconductor, a designer of low power FPGAs, on the grounds that Samsung had almost no presence in programmable logic while its foundry share sat near 9% against TSMC's 64%.</p>
+    <p>I led the quantitative work. I built a five year forecast from management guidance, with revenue growth tapering from 37% to 15% and EBIT margin recovering from 15% toward 28% as operating leverage returned. WACC came out at 11.45% using CAPM with a beta of 1.67 and a risk free rate of 4.04%, alongside a 2.5% terminal growth rate and an 18% normalised tax rate.</p>
+    <p>What I remember most is that the three methods disagreed with each other. DCF gave a floor of $22 to $35, EV/Revenue gave $28 to $35, and forward EV/EBITDA gave $60 to $137. We recommended $127 per share, a 30% premium to the $98 market price. Most of that spread comes from things a spreadsheet cannot produce: control of the asset, the HARMAN automotive integration, and the case for bundling Samsung HBM memory with Lattice programmable logic in the same AI server. Learning to write the argument for why a premium is defensible taught me more than building the model did.</p>
+    <h3>AI wearable concept</h3>
+    <p class="when">Apr 2026 · 7-person cross-university team</p>
+    <p>A seven person team from UCL, Oxford and Bristol working on a companion wearable for anxiety detection in university students. I handled the market side, which meant sizing the segment, mapping the existing products and where they fell short, and working out how a device like this would actually reach the people it was designed for.</p>
+    <p>It was the first time I had to argue for something without a proof behind it, and I found the ambiguity harder than any of the maths.</p>
+  </div></div></section>
+
+  <section id="career"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">career</span></div><div class="pad">
+    <h2>Career</h2>
+    <p class="kicker">Open to summer 2027 internships.</p>
+    <h3>Algorithm Team Intern · Inspur Group</h3>
+    <p class="when">Aug 2026 – present · Jinan, China</p>
+    <p>Working under an algorithm mentor: extracting and restructuring SQL query output for analysis, migrating a MySQL/SQLite schema to GaussDB, and sourcing container images for a YOLO deployment. Early days, and mostly a matter of learning how the infrastructure fits together.</p>
+    <h3>Front-end Development Intern · Inspur Group</h3>
+    <p class="when">Jun – Aug 2026 · Jinan, China</p>
+    <p>Worked under a mentor on a WeChat mini-program for staff canteen ordering, covering cart, order lifecycle, merchant fulfilment and menu management. The implementation leaned heavily on AI-assisted coding; my contribution was finding where the generated logic broke, in pricing precision and in order state transitions, and driving it to a working build. First hands-on experience with git, front-end/back-end separation and JSON.</p>
+    <h3>Head of Project Labs · UCL Data Science Society</h3>
+    <p class="when">Mar 2026 – present · London</p>
+    <p>Elected to lead the society's 2026/27 project programme, setting academic direction across data science, machine learning and quantitative analytics, and running the project teams from scoping through to final presentation. The programme starts this term.</p>
+    <h3>Maths Teaching Assistant · Lumi Summer School</h3>
+    <p class="when">Jul 2025</p>
+    <p>Marked assignments and exam papers, taught TMUA and MAT past papers, and ran Oxbridge-style mock interviews.</p>
+    <h3>Finance and Strategy Mentor · FRC Team 6399</h3>
+    <p class="when">Aug 2025 – Mar 2026 · remote</p>
+    <p>Managed the team's competition budget and expense records across two competitions, in Shanghai and in Turkey.</p>
+  </div></div></section>
+
+  <section id="journal"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div><div class="pad">
+    <h2>Journal</h2>
+    <p class="kicker">Notes, half-formed ideas, and things I had to look up twice.</p>
+    <h3>On courage, and being encouraged</h3>
+    <p class="when">journal · 26 July 2026</p>
+    <p>I am a strange person. My happiness comes from feeling that I exist in the world, and the clearest evidence that I am not emotionally indifferent is that I cry. So tears do not make me feel ashamed. They give me a kind of fullness, because without my noticing they have made more courage available to me.</p>
+    <p>I still think too much. I am attached to building a large framework of knowledge, and then not entirely satisfied with what I put inside it.</p>
+    <p>Having been encouraged is probably what teaches you the weight of the word discouraged. It is the same reason I chose to read maths when I was still bad at it. I grew up in a hortative environment, which gave me a relatively safe place to stand, and a great deal of courage absorbed without noticing.</p>
+    <p>I have also noticed that the friends I have kept since secondary school, who studied in the same environment, have all somehow grown the ability to praise each other constantly and to say what they feel without embarrassment. The whole circle runs on it.</p>
+    <p>I refuse to dislike emotional fluctuation. Even when I know a stretch of happiness is coming, everything stays slightly out of reach. I am afraid of losing things, and I cannot picture how I would slowly step back from them. What worries me most is looking back and finding that all of it has narrowed my road for a while.</p>
+  </div></div></section>
+
+  <section id="more"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">the rest of me</span></div><div class="pad">
+    <h2>The rest of me</h2>
+    <p class="kicker">Music, books, screens, and a lot of airports.</p>
+
+    <h3>On repeat</h3>
+    <div class="cdp">
+      <div class="deck">
+        <div class="case"><div class="disc big" id="bigDisc" style="--c1:#6B4E9E;--c2:#C9A8F0"><b>BTS</b></div></div>
+        <div class="deckinfo">
+          <p class="pnote">Now playing</p>
+          <h4 id="cdName">BTS</h4>
+          <p id="cdSince">since 2021</p>
+          <div id="sp"><span class="ph">Spotify link not set yet</span></div>
+        </div>
+      </div>
+      <div class="tray" id="tray">
+        <button data-n="BTS" data-s="since 2021" data-c1="#6B4E9E" data-c2="#C9A8F0" data-sp="https://open.spotify.com/track/5QDLhrAOJJdNAmCTJ8xMyW?si=d07f60f77519420b" aria-pressed="true"><span class="disc" style="--c1:#6B4E9E;--c2:#C9A8F0"><b>BTS</b></span><small>BTS</small></button>
+        <button data-n="TWICE" data-s="since 2021" data-c1="#B5628F" data-c2="#F2B6D2" data-sp="https://open.spotify.com/track/54mnwt3kO0uYsy0ceg14JP?si=c12f5b5bceb74bf7" aria-pressed="false"><span class="disc" style="--c1:#B5628F;--c2:#F2B6D2"><b>TWICE</b></span><small>TWICE</small></button>
+        <button data-n="HEARTS2HEARTS" data-s="since 2025" data-c1="#3E6B8A" data-c2="#9FD2E8" data-sp="https://open.spotify.com/track/6jYiHr12NVKLzn0X7K8aSK?si=3e64c9a028824bb1" aria-pressed="false"><span class="disc" style="--c1:#3E6B8A;--c2:#9FD2E8"><b>HEARTS2HEARTS</b></span><small>HEARTS2HEARTS</small></button>
+        <button data-n="R&B" data-s="always" data-c1="#8A5A3E" data-c2="#E0B48E" data-sp="https://open.spotify.com/track/10aWGOqSDBqvNzJ9NeKDbK?si=7abc20c32c5b40f9" aria-pressed="false"><span class="disc" style="--c1:#8A5A3E;--c2:#E0B48E"><b>R&B</b></span><small>R&B</small></button>
+        <button data-n="Mandopop" data-s="home" data-c1="#4A6B52" data-c2="#A8D6B4" data-sp="https://open.spotify.com/track/5aGeWhnZe80YNJ8loeEBQZ?si=19d9af1dc043417e" aria-pressed="false"><span class="disc" style="--c1:#4A6B52;--c2:#A8D6B4"><b>Mandopop</b></span><small>Mandopop</small></button>
+        <button data-n="Western pop" data-s="study hours" data-c1="#7A3E52" data-c2="#E2A2B6" data-sp="https://open.spotify.com/track/3iy2QuCtCzpWnR6tia39AB?si=99f24fce0de6498c" aria-pressed="false"><span class="disc" style="--c1:#7A3E52;--c2:#E2A2B6"><b>Western pop</b></span><small>Western pop</small></button>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--ink-2)">I saw TWICE live in London in 2026, five years after I started listening.</p>
+
+    <h3>Screen</h3>
+    <ul class="filters" data-filters="screen">
+      <li><button aria-pressed="true" data-f="all">All 34</button></li>
+      <li><button aria-pressed="false" data-f="Korean drama">Korean drama</button></li>
+      <li><button aria-pressed="false" data-f="Film">Film</button></li>
+      <li><button aria-pressed="false" data-f="Series">Series</button></li>
+      <li><button aria-pressed="false" data-f="Chinese drama">Chinese drama</button></li>
+    </ul>
+    <div class="flow" id="screen" data-flow>
+        <article class="cf" data-cat="Korean drama" style="background:#6B4E9E"><span class="cf-cat">Korean drama</span><h5>Reply 1988</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#B5628F"><span class="cf-cat">Korean drama</span><h5>Lovely Runner</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#3E6B8A"><span class="cf-cat">Korean drama</span><h5>Unknown Seoul</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#8A6B3E"><span class="cf-cat">Korean drama</span><h5>When Life Gives You Tangerines</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#4A6B52"><span class="cf-cat">Korean drama</span><h5>Descendants of the Sun</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#7A3E52"><span class="cf-cat">Korean drama</span><h5>While You Were Sleeping</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#5A4E8A"><span class="cf-cat">Korean drama</span><h5>Pinocchio</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#8A3E6B"><span class="cf-cat">Korean drama</span><h5>爱情怎样翻译</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#6B4E9E"><span class="cf-cat">Korean drama</span><h5>Moving</h5><small></small></article>
+        <article class="cf" data-cat="Korean drama" style="background:#B5628F"><span class="cf-cat">Korean drama</span><h5>Crash Landing on You</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#3E6B8A"><span class="cf-cat">Film</span><h5>The Shawshank Redemption</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#8A6B3E"><span class="cf-cat">Film</span><h5>Miss Sloane</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#4A6B52"><span class="cf-cat">Film</span><h5>Life Is Beautiful</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#7A3E52"><span class="cf-cat">Film</span><h5>Inception</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#5A4E8A"><span class="cf-cat">Film</span><h5>The Silence of the Lambs</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#8A3E6B"><span class="cf-cat">Film</span><h5>F1</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#6B4E9E"><span class="cf-cat">Film</span><h5>The Amazing Spider-Man</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#B5628F"><span class="cf-cat">Film</span><h5>Dune</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#3E6B8A"><span class="cf-cat">Film</span><h5>There's Still Tomorrow</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#8A6B3E"><span class="cf-cat">Film</span><h5>Dead Poets Society</h5><small></small></article>
+        <article class="cf" data-cat="Film" style="background:#4A6B52"><span class="cf-cat">Film</span><h5>Harry Potter</h5><small></small></article>
+        <article class="cf" data-cat="Series" style="background:#7A3E52"><span class="cf-cat">Series</span><h5>Stranger Things</h5><small></small></article>
+        <article class="cf" data-cat="Series" style="background:#5A4E8A"><span class="cf-cat">Series</span><h5>Normal People</h5><small></small></article>
+        <article class="cf" data-cat="Series" style="background:#8A3E6B"><span class="cf-cat">Series</span><h5>The Crown</h5><small></small></article>
+        <article class="cf" data-cat="Series" style="background:#6B4E9E"><span class="cf-cat">Series</span><h5>The Summer I Turned Pretty</h5><small></small></article>
+        <article class="cf" data-cat="Series" style="background:#B5628F"><span class="cf-cat">Series</span><h5>Never Have I Ever</h5><small></small></article>
+        <article class="cf" data-cat="Series" style="background:#3E6B8A"><span class="cf-cat">Series</span><h5>Why Women Kill</h5><small></small></article>
+        <article class="cf" data-cat="Series" style="background:#8A6B3E"><span class="cf-cat">Series</span><h5>Friends</h5><small></small></article>
+        <article class="cf" data-cat="Chinese drama" style="background:#4A6B52"><span class="cf-cat">Chinese drama</span><h5>野狗骨头</h5><small></small></article>
+        <article class="cf" data-cat="Chinese drama" style="background:#7A3E52"><span class="cf-cat">Chinese drama</span><h5>甄嬛传</h5><small></small></article>
+        <article class="cf" data-cat="Chinese drama" style="background:#5A4E8A"><span class="cf-cat">Chinese drama</span><h5>还珠格格</h5><small></small></article>
+        <article class="cf" data-cat="Chinese drama" style="background:#8A3E6B"><span class="cf-cat">Chinese drama</span><h5>墨雨云间</h5><small></small></article>
+        <article class="cf" data-cat="Chinese drama" style="background:#6B4E9E"><span class="cf-cat">Chinese drama</span><h5>点燃我温暖你</h5><small></small></article>
+        <article class="cf" data-cat="Chinese drama" style="background:#B5628F"><span class="cf-cat">Chinese drama</span><h5>欢乐颂</h5><small></small></article>
+    </div>
+    <div class="flow-nav"><button data-prev="screen" aria-label="Previous">&#8249;</button><button data-next="screen" aria-label="Next">&#8250;</button><span class="flow-idx" id="screen-idx"></span><span class="flow-hint">drag or click</span></div>
+
+    <h3>Reading</h3>
+    <div class="flow" id="books" data-flow>
+        <article class="cf" data-cat="Book" style="background:#8A6B3E"><span class="cf-cat">Book</span><h5>My Brilliant Friend</h5><small>Elena Ferrante</small></article>
+        <article class="cf" data-cat="Book" style="background:#4A6B52"><span class="cf-cat">Book</span><h5>Strait Is the Gate</h5><small>André Gide</small></article>
+        <article class="cf" data-cat="Book" style="background:#7A3E52"><span class="cf-cat">Book</span><h5>Siddhartha</h5><small>Hermann Hesse</small></article>
+        <article class="cf" data-cat="Book" style="background:#5A4E8A"><span class="cf-cat">Book</span><h5>房思琪的初恋乐园</h5><small>林奕含</small></article>
+        <article class="cf" data-cat="Book" style="background:#8A3E6B"><span class="cf-cat">Book</span><h5>Thinking, Fast and Slow</h5><small>Daniel Kahneman</small></article>
+        <article class="cf" data-cat="Book" style="background:#6B4E9E"><span class="cf-cat">Book</span><h5>One Hundred Years of Solitude</h5><small>Gabriel García Márquez</small></article>
+        <article class="cf" data-cat="Book" style="background:#B5628F"><span class="cf-cat">Book</span><h5>Alchemised</h5><small>SenLinYu</small></article>
+    </div>
+    <div class="flow-nav"><button data-prev="books" aria-label="Previous">&#8249;</button><button data-next="books" aria-label="Next">&#8250;</button><span class="flow-idx" id="books-idx"></span><span class="flow-hint">drag or click</span></div>
+    <p style="font-size:14px;color:var(--ink-2)">Not a long list. I read slowly and reread the ones that unsettled me.</p>
+
+    <h3>Places</h3>
+    <div class="counts">
+      <div><b>16</b><span>provinces and regions</span></div>
+      <div><b>16</b><span>countries</span></div>
+    </div>
+    <div class="mapwrap"><svg id="worldmap" viewBox="0 0 900 460" role="img" aria-label="World map of places visited"></svg><span class="maptip" id="maptip"></span></div>
+    <p class="legend"><span><i style="background:#7851A9"></i>countries visited</span><span><i style="background:#F5C518"></i>China, by province</span></p>
+    <div class="mapfall" id="mapfall">
+      <p class="grp">Around China</p>
+      <ul class="chips"><li>Shandong</li><li>Jiangsu</li><li>Shanghai</li><li>Zhejiang</li><li>Anhui</li><li>Tianjin</li><li>Beijing</li><li>Henan</li><li>Shanxi</li><li>Shaanxi</li><li>Sichuan</li><li>Hubei</li><li>Guangdong</li><li>Hong Kong</li><li>Macau</li><li>Taiwan</li></ul>
+      <p class="grp">Further afield</p>
+      <ul class="chips"><li>Japan</li><li>South Korea</li><li>Malaysia</li><li>Singapore</li><li>Vietnam</li><li>Thailand</li><li>Switzerland</li><li>Finland</li><li>France</li><li>Germany</li><li>Italy</li><li>Spain</li><li>Austria</li><li>Netherlands</li><li>Belgium</li><li>United Kingdom</li></ul>
+    </div>
+  </div></div></section>
+
+</main>
+
+<footer><p>huiru.feng.25@ucl.ac.uk · London · <a href="https://github.com/sofhrina">GitHub</a> · <a href="https://www.linkedin.com/in/huirufeng429/">LinkedIn</a></p></footer>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3/dist/d3-geo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+(function(){
+  var mob = window.matchMedia('(max-width:760px)');
+
+  /* ---------- CD player ---------- */
+  var tray = document.getElementById('tray');
+  if (tray) tray.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    [].forEach.call(tray.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed', String(x===b)); });
+    var d = document.getElementById('bigDisc');
+    d.style.setProperty('--c1', b.dataset.c1);
+    d.style.setProperty('--c2', b.dataset.c2);
+    d.querySelector('b').textContent = b.dataset.n;
+    document.getElementById('cdName').textContent = b.dataset.n;
+    document.getElementById('cdSince').textContent = b.dataset.s;
+    d.classList.add('paused'); void d.offsetWidth; d.classList.remove('paused');
+    var sp = document.getElementById('sp'), url = (b.dataset.sp || '').trim();
+    if (url) {
+      var emb = url.replace('open.spotify.com/', 'open.spotify.com/embed/').split('?')[0];
+      sp.innerHTML = '<iframe src="' + emb + '?utm_source=generator&theme=0" height="80" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>';
+    } else {
+      sp.innerHTML = '<span class="ph">Spotify link not set yet</span>';
+    }
+  });
+
+  /* ---------- coverflow ---------- */
+  var flows = {};
+  function layout(f, frac){
+    frac = frac || 0;
+    var idx = document.getElementById(f.el.id + '-idx');
+    if (idx) idx.textContent = (f.act + 1) + ' / ' + f.vis.length;
+    if (mob.matches) return;
+    f.vis.forEach(function(el,i){
+      var off = i - f.act - frac, a = Math.abs(off);
+      if (a > 4.2){ el.style.opacity = 0; el.style.pointerEvents = 'none'; return; }
+      el.style.opacity = a > 3.2 ? 0 : 1;
+      el.style.pointerEvents = 'auto';
+      el.style.zIndex = String(100 - Math.round(a*10));
+      el.style.transform = 'translateX(' + (off*76) + 'px) translateZ(' + (-a*150) + 'px) rotateY(' + (off*-30) + 'deg) scale(' + Math.max(.6, 1-a*.05) + ')';
+    });
+  }
+  function go(f,d){ f.act = Math.max(0, Math.min(f.vis.length-1, f.act+d)); layout(f); }
+
+  [].forEach.call(document.querySelectorAll('[data-flow]'), function(el){
+    var f = { el: el, all: [].slice.call(el.querySelectorAll('.cf')), act: 0 };
+    f.vis = f.all.slice(); flows[el.id] = f;
+    f.all.forEach(function(c){
+      c.addEventListener('click', function(){
+        if (mob.matches) return;
+        var k = f.vis.indexOf(c); if (k>-1 && k!==f.act){ f.act=k; layout(f); }
+      });
+    });
+    var sx=0, dragging=false, moved=0;
+    el.addEventListener('pointerdown', function(e){
+      if (mob.matches) return;
+      dragging=true; moved=0; sx=e.clientX; el.classList.add('drag'); el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener('pointermove', function(e){ if(!dragging) return; moved=e.clientX-sx; layout(f, -moved/90); });
+    ['pointerup','pointercancel','pointerleave'].forEach(function(ev){
+      el.addEventListener(ev, function(){
+        if(!dragging) return; dragging=false; el.classList.remove('drag');
+        f.act = Math.max(0, Math.min(f.vis.length-1, Math.round(f.act - moved/90))); layout(f);
+      });
+    });
+    layout(f);
+  });
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-prev],[data-next]'); if(!b) return;
+    var id = b.getAttribute('data-prev') || b.getAttribute('data-next');
+    if (flows[id]) go(flows[id], b.hasAttribute('data-next') ? 1 : -1);
+  });
+
+  var fb = document.querySelector('[data-filters="screen"]');
+  if (fb) fb.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    [].forEach.call(fb.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed', String(x===b)); });
+    var want = b.dataset.f, f = flows['screen'];
+    f.all.forEach(function(c){ c.classList.toggle('off', !(want==='all' || c.dataset.cat===want)); });
+    f.vis = f.all.filter(function(c){ return !c.classList.contains('off'); });
+    f.act = 0; layout(f);
+  });
+
+  /* ---------- world map ---------- */
+  var VISITED = ['Japan','South Korea','Korea, Rep.','Republic of Korea','Malaysia','Singapore','Vietnam','Viet Nam','Thailand','Switzerland','Finland','France','Germany','Italy','Spain','Austria','Netherlands','Belgium','United Kingdom','China'];
+  var CN = [['Shandong',36.4,118.1],['Jiangsu',33.0,120.0],['Shanghai',31.2,121.5],['Zhejiang',29.2,120.2],['Anhui',31.9,117.2],['Tianjin',39.1,117.2],['Beijing',39.9,116.4],['Henan',34.0,113.6],['Shanxi',37.6,112.3],['Shaanxi',35.4,109.0],['Sichuan',30.6,102.9],['Hubei',30.9,112.3],['Guangdong',23.4,113.4],['Hong Kong',22.3,114.2],['Macau',22.2,113.5],['Taiwan',23.7,121.0]];
+
+  function drawMap(){
+    var svg = document.getElementById('worldmap');
+    if (!svg || !window.d3 || !window.topojson) return fallback();
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+      .then(function(r){ return r.json(); })
+      .then(function(topo){
+        var geo = topojson.feature(topo, topo.objects.countries);
+        var proj = d3.geoNaturalEarth1().fitExtent([[10,10],[890,450]], geo);
+        var path = d3.geoPath(proj);
+        var tip = document.getElementById('maptip'), wrap = svg.parentNode;
+        var out = '';
+        geo.features.forEach(function(f){
+          var nm = f.properties.name || '';
+          var on = VISITED.indexOf(nm) > -1;
+          out += '<path class="' + (on ? 'been' : 'land') + '" d="' + path(f) + '" data-n="' + nm + '"></path>';
+        });
+        CN.forEach(function(c){
+          var xy = proj([c[2], c[1]]);
+          if (xy) out += '<circle class="cn" cx="' + xy[0].toFixed(1) + '" cy="' + xy[1].toFixed(1) + '" r="3.4" data-n="' + c[0] + '"></circle>';
+        });
+        svg.innerHTML = out;
+        svg.addEventListener('pointermove', function(e){
+          var t = e.target.getAttribute && e.target.getAttribute('data-n');
+          if (!t){ tip.style.opacity = 0; return; }
+          var r = wrap.getBoundingClientRect();
+          tip.textContent = t;
+          tip.style.left = (e.clientX - r.left + 12) + 'px';
+          tip.style.top = (e.clientY - r.top - 10) + 'px';
+          tip.style.opacity = 1;
+        });
+        svg.addEventListener('pointerleave', function(){ tip.style.opacity = 0; });
+      })
+      .catch(fallback);
+  }
+  function fallback(){
+    var w = document.querySelector('.mapwrap'), f = document.getElementById('mapfall');
+    var localFile = location.protocol === 'file:';
+    if (w) w.innerHTML = '<p class="mapmsg">' +
+      (localFile
+        ? 'The map needs the page to be served over http. Open a terminal in this folder, run <code>python3 -m http.server</code>, then visit localhost:8000. It will also work automatically once the site is deployed.'
+        : 'Map data could not be loaded. The list is below.') + '</p>';
+    if (f) f.style.display = 'block';
+    var l = document.querySelector('.legend'); if (l) l.style.display = 'none';
+  }
+  if (document.getElementById('worldmap')) setTimeout(drawMap, 60);
+})();
+</script>
+</body>
+</html>

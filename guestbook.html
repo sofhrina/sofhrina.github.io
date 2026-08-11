@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guestbook · Huiru Feng</title>
+<meta name="description" content="Leave a note in Huiru Feng's guestbook.">
+<link rel="canonical" href="https://sofhrina.com/guestbook.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237851A9'/><text x='16' y='23' font-size='17' font-family='Georgia,serif' fill='%23F5C518' text-anchor='middle'>H</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guestbook.css">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<div class="menu"><a href="index.html">Huiru Feng</a><span>Guestbook · London</span></div>
+
+<main class="guest-shell">
+  <header class="guest-hero">
+    <p class="eyebrow">A SMALL CORNER OF THE INTERNET</p>
+    <h1>The Internet<br>Was Here.</h1>
+    <p class="intro">Notes from people who wandered in. Leave something kind, curious, or unexpectedly specific.</p>
+    <a class="back-link" href="index.html">← Back to the desk</a>
+  </header>
+
+  <section class="postcard" aria-labelledby="leave-title">
+    <div class="window-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>leave-a-trace.txt</span></div>
+    <div class="postcard-body">
+      <div class="stamp" aria-hidden="true">SOFHRINA<br>INTERNET POST<br>2026</div>
+      <p class="post-kicker">YOU MADE IT THIS FAR</p>
+      <h2 id="leave-title">Leave a little proof<br>you were here.</h2>
+      <form id="guestbook-form">
+        <div class="field-row">
+          <label>Nickname <span>required</span><input name="nickname" maxlength="40" autocomplete="nickname" required placeholder="What should I call you?"></label>
+          <label>Email <span>optional · never public</span><input name="email" type="email" maxlength="254" autocomplete="email" placeholder="Only if you want a reply"></label>
+        </div>
+        <label>Your note <span><b id="char-count">0</b>/1000</span><textarea name="message" maxlength="1000" required placeholder="Say hello, leave a thought, recommend a book..."></textarea></label>
+        <label class="honey" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="form-foot">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEMrq5DfIWMgu3dt" data-theme="light"></div>
+          <button type="submit">Send into the universe →</button>
+        </div>
+        <p class="form-note">Every note waits backstage until I have read it.</p>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="message-section" aria-labelledby="messages-title">
+    <div class="section-heading">
+      <div><p class="eyebrow">APPROVED SIGHTINGS</p><h2 id="messages-title">Traces left behind</h2></div>
+      <span id="message-count" class="counter">…</span>
+    </div>
+    <div id="message-wall" class="message-wall" aria-live="polite">
+      <article class="message-card loading-card"><p>Listening for footsteps…</p></article>
+    </div>
+  </section>
+
+  <aside class="private-note">
+    <span>Something less public?</span>
+    <a href="mailto:hi@sofhrina.com">hi@sofhrina.com ↗</a>
+  </aside>
+</main>
+
+<footer>Built with curiosity · moderated by a human · <a href="index.html">sofhrina.com</a></footer>
+<script src="guestbook.js" defer></script>
+</body>
+</html>

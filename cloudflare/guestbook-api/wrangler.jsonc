@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sofhrina-guestbook-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-11",
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "guestbook-api.sofhrina.com", "custom_domain": true }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sofhrina-guestbook",
+      "database_id": "775746a9-6055-472f-bbd3-015edf49613b"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "NOTIFY_EMAIL",
+      "destination_address": "sophiaisfhr0429@gmail.com"
+    }
+  ]
+}

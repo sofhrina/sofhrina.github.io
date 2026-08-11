@@ -1,6 +1,8 @@
 import { EmailMessage } from 'cloudflare:email';
 
 const ALLOWED_ORIGINS = new Set([
+  'http://sofhrina.com',
+  'http://www.sofhrina.com',
   'https://sofhrina.com',
   'https://www.sofhrina.com',
   'https://sofhrina.github.io',

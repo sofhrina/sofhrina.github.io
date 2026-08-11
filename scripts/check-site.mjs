@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const requiredFiles = [
+  '.nojekyll',
   'index.html',
   'guestbook.html',
   'guestbook.css',

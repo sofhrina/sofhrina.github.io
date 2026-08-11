@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
-    "check": "node scripts/check-site.mjs"
+    "check": "node scripts/check-site.mjs",
+    "journal:add": "node scripts/add-journal.mjs",
+    "journal:build": "node scripts/build-journal.mjs"
   }
 }

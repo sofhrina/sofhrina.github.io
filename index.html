@@ -243,6 +243,23 @@ section p{margin:0 0 11px;max-width:66ch;font-size:15px;line-height:1.62}
 .mods{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
 .mods li{background:var(--cream);border-radius:7px;padding:4px 10px;font-size:12.5px}
 .divider{height:1px;background:var(--hair);margin:24px 0}
+.journal-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.journal-card{border:1px solid #E6DCC6;border-radius:13px;background:var(--cream);overflow:hidden;transition:border-color .2s ease,box-shadow .2s ease}
+.journal-card[open]{grid-column:1/-1;background:#fff;border-color:#D8C7EA;box-shadow:0 16px 34px rgba(60,30,110,.1)}
+.journal-card summary{display:flex;flex-direction:column;min-height:210px;padding:20px;cursor:pointer;list-style:none;position:relative}
+.journal-card summary::-webkit-details-marker{display:none}
+.journal-card summary:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+.journal-card .journal-date{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:#7851A9}
+.journal-card h3{font-size:22px;line-height:1.18;margin:12px 0 8px}
+.journal-card .journal-deck{font-size:13px;line-height:1.6;color:var(--ink-2)}
+.journal-read{margin-top:auto;padding-top:18px;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#6B3FA0}
+.journal-read::after{content:"Open original +"}
+.journal-card[open] .journal-read::after{content:"Close original −"}
+.journal-body{border-top:1px solid var(--hair);padding:26px 28px 30px}
+.journal-body p{max-width:72ch;font-size:15px;line-height:1.86;margin:0 auto 16px}
+.journal-body h4,.journal-body h5,.journal-body h6{max-width:72ch;margin:24px auto 10px;font-family:Fraunces,Georgia,serif}
+.journal-body ul,.journal-body blockquote{max-width:68ch;margin:0 auto 16px}
+.journal-body blockquote{border-left:3px solid var(--yellow);padding:7px 0 7px 16px;color:var(--ink-2)}
 footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font-size:13.5px}
 
 @media(max-width:1060px){
@@ -259,6 +276,10 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
   .catsay{display:none}
   main{padding:56px 20px 30px}
   .sec-win .pad{padding:26px 22px 30px}
+  .journal-gallery{grid-template-columns:1fr}
+  .journal-card[open]{grid-column:auto}
+  .journal-card summary{min-height:0}
+  .journal-body{padding:22px 18px 24px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
@@ -398,7 +419,9 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
       <article class="win w-blog tilt-b">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div>
         <div class="pad">
-          <div class="entry"><span class="tag t2">journal</span><b>On courage, and being encouraged</b><span>Having been encouraged is probably what teaches you the weight of the word discouraged.</span></div>
+          <!-- JOURNAL_PREVIEW_START -->
+          <div class="entry"><span class="tag t2">journal</span><b>19岁生日反思</b><span>在离二十岁更近一步时，我重新看待平凡、孤独、表达与成长，也试着承认自己已经拥有解决问题的能力。</span></div>
+          <!-- JOURNAL_PREVIEW_END -->
           <a class="more" href="#journal">Every entry →</a>
         </div>
       </article>
@@ -553,14 +576,83 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
 
   <section id="journal"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div><div class="pad">
     <h2>Journal</h2>
-    <p class="kicker">Notes, half-formed ideas, and things I had to look up twice.</p>
-    <h3>On courage, and being encouraged</h3>
-    <p class="when">journal · 26 July 2026</p>
-    <p>I am a strange person. My happiness comes from feeling that I exist in the world, and the clearest evidence that I am not emotionally indifferent is that I cry. So tears do not make me feel ashamed. They give me a kind of fullness, because without my noticing they have made more courage available to me.</p>
-    <p>I still think too much. I am attached to building a large framework of knowledge, and then not entirely satisfied with what I put inside it.</p>
-    <p>Having been encouraged is probably what teaches you the weight of the word discouraged. It is the same reason I chose to read maths when I was still bad at it. I grew up in a hortative environment, which gave me a relatively safe place to stand, and a great deal of courage absorbed without noticing.</p>
-    <p>I have also noticed that the friends I have kept since secondary school, who studied in the same environment, have all somehow grown the ability to praise each other constantly and to say what they feel without embarrassment. The whole circle runs on it.</p>
-    <p>I refuse to dislike emotional fluctuation. Even when I know a stretch of happiness is coming, everything stays slightly out of reach. I am afraid of losing things, and I cannot picture how I would slowly step back from them. What worries me most is looking back and finding that all of it has narrowed my road for a while.</p>
+    <p class="kicker">Fragments I decided not to leave buried in Notes. Open only the one that catches.</p>
+    <!-- JOURNAL_GALLERY_START -->
+    <div class="journal-gallery" data-entry-count="4">
+      <details class="journal-card" id="journal-entry-1">
+        <summary>
+          <span class="journal-date">2026年4月29日</span>
+          <h3>19岁生日反思</h3>
+          <span class="journal-deck">在离二十岁更近一步时，我重新看待平凡、孤独、表达与成长，也试着承认自己已经拥有解决问题的能力。</span>
+          <span class="journal-read" aria-hidden="true"></span>
+        </summary>
+        <div class="journal-body">
+          <p>我思索了一下要不要今年生日发朋友圈，因为我觉得19岁没什么特别的，无非是离20岁更近了一步，同时加重了一点我的年龄焦虑。</p>
+          <p>为了避开考试，我在四月中旬就喊了一堆朋友来吃饭庆祝生日，那晚我在状态里发，“18岁许愿成为可靠大人，19岁希望少一点烦恼。曾祈求多一点苦难，这样我就可以更快成长，一路上我经历了太多孤独、歧视、失败，逐渐对生活不抱有任何预期，天大的事也砸不了我，我相信我有足够的解决问题的能力。”</p>
+          <p>这一年似乎没什么特别的，我跟周遭的所有朋友一样，一个人跨越万里，拉着上百斤重的行李，来到了英国求学。从初二真的确定要来留学，到飞机降落希思罗，我盼望了四年。换一种心态，我算是蛮幸运的，因为我选择走了一条很大众化，出错概率最小的的路。中考完，按部就班进了全省最好的国际部，alevel选了最经典的四门，选了就业方向较广的数学专业，集齐了所有的数学入学考试，误打误撞跌进了全伦敦中国人最多的大学，随大流申过Spring week，又像大部分人一样石沉大海。所以我总觉得，我没什么特别的，甚至可以评价为无聊或者平凡，我的身上能看到中国留学生在异国他乡挣扎的所有影子。所以一开始，我很紧绷，因为我被恐惧包围着，害怕一辈子就这样碌碌而为，没有价值，只是地球上的简单过客。我们这个群体的确蛮适应孤独的，一个人坐飞机，一个人参加学术社交活动，一个人吃饭逛超市蹲图书馆，所以我们间接获得了在全世界和平地区都能苟活的能力。</p>
+          <p>来之前我没觉得天气真的会影响人的心情，我完全低估了冬令时，恰逢我人生自我怀疑的低谷，碰上三点就天黑的伦敦，有段日子我必须要摄入酒精才能支撑自己完成期中考试。最近又在期末季，中午出走觅食的时候就喜欢去各种公园坐一坐，我很喜欢我们学校的位置，心烦了可以任意挑选一块草地晒太阳，所以都说伦敦是公园爱好者的天堂，对于我们这种不懂得享受的年轻人，也渐渐爱上了欣赏这世间的一草一木。去年有段时间心很乱，特别喜欢周末跑到牛剑缓缓，在城中心住久了，于是尤其偏爱小镇上恬静的氛围，愿意称其为忙碌生活短暂的喘息地。有时候喜欢去楼下的几家咖啡厅坐一坐，和店员偶尔瞎扯两句，总会被他们身上的活力所感染，我生活在文化交融的地区，大家都是在外漂泊的浮萍，彼此惺惺相惜，尽可能向所有人释放善意。</p>
+          <p>抛开学业，求职，和科研不谈，最有价值的是我学会了如何表达。从前会羞于表达我的关心和在意，可是我在这里遇到了太多很好的朋友，感觉大家都是伟大的引导性恋人，会很直白的夸奖我，直面和我谈心。很享受和一些朋友deep talk，能够从不同的角度看世界，并从中收获灵魂碰撞。所以我蛮幸运的，在这个人性悲凉的社会，还能在我这最后的学生时代，交到很要好的朋友们，大家是细心的，真诚的，善良的。于是我变化也蛮大的，很久没联系的朋友会评价我更有人味了，我能够明确表达我的好感，不羞于展现对他人的欣赏，甚至会发现那个蹦蹦跳跳的我会偶尔回归。</p>
+          <p>时刻知道认知的重要性，所以会偶尔peer pressure，很钦佩我的一些朋友们，足够谦逊和沉稳。渐渐地，我开始变成了一个倾听者，通红的眼眶是我在努力不留下眼泪，我和大部分人持有一样的观点，趁着年轻多试多碰壁，在幸福和痛苦面前毫不犹豫选择后者，每个睡不着的夜晚，耳边是伟大的鲁豫慢谈，脑子里各种还算沉重的想法。前段时间测herti，结果是金斯伯格，在小号朋友圈留下这么一句：“曾经幼稚地祈望得到一个可信任的依靠，但慢慢发觉这种不安，来源于我人格底色的懦弱。来留学的这半年里，我对幸福没有了贪恋，不再渴求得到一个在智力，意志或者品味上共振的镜像，愈发觉得孤独是资产，喜欢并习惯为自己买单的人，怎么会接受生活里的突然插入。从小就被莫名的不甘心牵引着，最大的恐惧一直都是甘于平凡，我害怕被淹没在尘埃里，丧失对世界的定义权。”的确，我们会和付出过真心的人越来越像，每次听一样的月光，无论在什么心境，都会有种淡淡的悲伤，但最近状态很好，还是如往常一样感恩所有人的出现。</p>
+          <p>最近活得还蛮充盈的，算是这几年备考最平静的一次，感谢ai时代大语言模型抚平了我心中所有的怅惘焦虑。这大概是最后的18岁限定索菲亚笔触了，我们都会顺顺利利。</p>
+        </div>
+      </details>
+
+      <details class="journal-card" id="journal-entry-2">
+        <summary>
+          <span class="journal-date">2025年12月</span>
+          <h3>2025总结</h3>
+          <span class="journal-deck">从申请季的低谷、207天假期，到伦敦的新生活：这一年，我用旅行、友谊和文字慢慢学会爱自己。</span>
+          <span class="journal-read" aria-hidden="true"></span>
+        </summary>
+        <div class="journal-body">
+          <p>是时候写2025总结了，我用了一整年去探索如何爱自己。</p>
+          <p>一月抱着没事找事的心态去考了aqa高数，没想到以fp2 149/150的成绩过了，再次之前我很久没有被肯定过了，我总是在怀疑自己走的路对不对，好看的alevel成绩单的确是我平淡生活的一剂良药。二月和爸妈去广东呆了一周，我妈很喜欢那一片，我创下了半年跑四趟广东的奇迹，最熟的时候脑子里可以想象出广州深圳香港的地图。忘不了2.14，那天上午还在跟朋友说，等等吧一定会来的，结果晚上就收到了hku的消息，我四个月没有拿offer了，我妈说她也终于可以睡个好觉了，其实我没有很欣喜，只是在庆幸终于能有一个不错的学上了。我的假期从2月底正式开始了，从2.19和alevel分手，到9.15飞去伦敦，207天，我的gap year。讲真一开始没有对这段假期有什么规划，只是懵懵懂懂地意识到我好像真的没什么事情可以做了。</p>
+          <p>三月，我去了上海和武汉，见到了criss，见到了czy lxy syr yyy，我们窝在lumi打uno，像去年夏天一样。月底和仙女去了香港深圳广州，和仙女认识13年了，哎缘分就是这么奇妙。凌晨五点，我在深圳某个山上看日出，邮箱里蹦出了ic拒信，我长吁一口气，在pyq发了写了很久的申请季总结，哪怕加拿大新加坡还没有来全，我也清晰地知道我肯定会去ucl，终于不用看心理医生了。四月我在家里爬坡，申请季让我暴饮暴食，那时我基本天天去健身房呆着，短暂的掉了25斤，虽然现在又胖回来了hh。4.29我的18岁生日，和好朋友一起。这两个月我在努力地让自己放松，除了雷打不动地看看数学转脑子，剩下的就一直在玩。大概看了二十多部剧，十几本小说，经常一个人跑去咖啡厅呆一天，把济南逛穿了。突然想到那段时间我还在做step，好像是20天写了10年的，那个被我写穿的本子还在书架上摆着，对数学最纯爱的几周。哎其实真觉得我当时挺牛的，或许没有从24.4开始的高压节奏下缓过来，真的每天都在学，我看完了cam IA的analysis notes，边爬坡边看宋浩的高等数学，学了点抽代线代数论，真的是在随心所欲地学新知识。</p>
+          <p>五月我回到了王者的怀抱，和姥姥去了西安，好吃真的很好吃，月底被拉去练车，参加了叽歪国际的高中毕业典礼，把李钟硕的剧看完了。整个六月我都过着六点多爬起来去练车的日子，手臂被晒得黢黑，紧赶慢赶着还是在6.26出发夏令营的前一天拿下了驾照。我愿称那一天是我best year中的best day，拿下了大学的confirm，高分拿下了驾照，将在无锡待三周，只觉得未来好明朗，我好期待，现在想想还是很幸福。先是和+1到了杭州，接着去了乌镇，我超好的旅游搭子，两个人在乌镇酒吧喝到差点掉进河里面，爱你我的+1。后来我一个人坐大巴从乌镇去苏州，再坐高铁来到了无锡，我盼望了很久的地方，我不知道接下来三周会发生什么，我只管享受。</p>
+          <p>这一段将用来记录我的夏令营。在伦敦的朋友会感慨，为什么只是两周的夏令营，我们的关系能这么好。或许是一群很抽象的人聚在了一起，或许是因为接踵而至的入学考试和大学面试，促使我们聚成了一团，我们肩并肩扛过了申请季，又在守得云开见月明的七月重新回到了最初的记忆。那天下午在吐槽垃圾的宿舍，突然tyy闯了进来，拿着一杯星巴克，蹦蹦跳跳地说：“嗨你就是冯绘如吧，我终于见到你啦！“我们俩是网友，是24.8上mat课认识的，过去一年只是朋友圈点赞的关系，但没有想到短短20天我收获了一辈子的好朋友。后来我陆续见到了下月，见到了mi，见到了ryan，在跑去拿奶茶的时候听着crs在窗边喊我的名字，这些记忆实在太深刻。我领着26f的学弟学妹们进校园，带着叽歪亲学妹逛教室，我从去年的经历者变成了今年的旁观者。当然在做入营题的时候，我又在感慨我去年怎么能这么蠢。我太知道有一个好的心态对申请季有多么重要，和zyc定期给叽歪学妹进行人文关怀，静静给她们点了奶茶，我又在想要是去年我能碰到给我指明道路的学姐该多好。看着大家tmua模考，学mat，模拟面试，我总会幻视那个懵懂的自己，tyy说得很对，这是属于我们申请季的闭环。我早就把在24年夏天认识的各位当作我的高中伙伴，当作我一生的好朋友。我忘不了国耳忘家，我们一起打牌玩桌游，十点多回宿舍在黑暗里默契地吓zyc，关着灯玩海龟汤，一起吐槽面试，想着如何跑出学校耍，怎么让crs请我们吃饭，一首多远都要在一起贯穿了我整个七月。三个月后在伦敦，久别重逢的半夜，我会突然惊醒，这段记忆实在太美好。在无锡的这三周是我生命里的乌托邦，我放下了太多的执念，我如此珍惜这段友谊，或许是我清晰地意识到，我很难再有机会活得那么纯粹了，我可以毫无保留地跟我的陶家家人们分享生活，没有利益挂钩，所以在分别的那天晚上，我哭了个通宵，原因太多太多，和大家最后聚在操场看了日出，分别时盯着校门口看了很久，再也没有机会能允许我如此幼稚了，回济南的高铁上哭了一路，结束了都结束了。</p>
+          <p>也要感谢我妈第一时间把我拉去了四川，不然我又要持续地戒断。我见到了祖国的大好河山，吃到了美味的川渝美食，刚到成都那一天我在车上睡着了，一睁眼以为自己无锡，瞪着大眼盯着窗外很久，才意识到原来我已经离开了。整个八月我把自己闷在济南，我看完了crs在25夏令营的笔记，顺完了ucl term1的所有notes，当然也在积极探索着各个领域。九月t某和s某跑来济南，我们五个人爬了泰山，在济南玩了剧本杀。9.5在青岛，我的手链不知道掉在了什么地方，那时我去年11月在hk买的，冥冥中自有天意，我听着onlyone，看着青岛的海，我知道是时候ending了。</p>
+          <p>9.15，我到了伦敦，好奇地看着窗外，我要在这座城市度过三年，这是我魂牵梦绕多年的地方。总是庆幸我被分到了一个好宿舍，在gh我结识了太多好朋友，跟着zky去蹭econ party，这一切都是我梦想的大学生活，我打心底里喜欢这一切。月底我见到了海儿，在异国他乡一见面就是大大的拥抱，半夜我们一起看许我耀眼吃火鸡面。9.29和victor去参加了cssa的面试，我从中认识了很多朋友，所有的一切都是值得的，都在往好的方向发展。</p>
+          <p>10.1，与lumi和叽歪的各位在ic重聚了，有那么多高中同学在伦敦，我心里好踏实。之后的每一周，我都会定时跑去ic找他们，每次相聚都会让我整个人静下来，是从头到脚暖暖的幸福，一群志同道合的人创造了伟大的友谊。这个月和在gh认识的好朋友每晚都在common room打牌，确实是非常丰富的大学生活，在我没有忙起来的时候能有如此好的娱乐活动我真的很幸运。其实在伦敦的生活很快，在一次次盼着黑色星期五快点结束中迎来了我的11月，我体验到了冬令时的威力。</p>
+          <p>11.1，我们到了剑桥，我终于来了让大多数人又爱又恨的地方，真的特别特别感谢lina带着我逛校园，请我吃披萨，出门在外有朋友很幸福。见到了六个月没见的frank和harry，带着我和zyc逛了很多学院，我还是要感慨Churchill实在是太漂亮，我硕士一定会申chch的嘻嘻。晚上跟czy和mi看了烟花，吃了好吃的日料，感谢mi在繁忙的比赛还抽时间找我们，这真的都是特别温暖的回忆。reading week我初尝了独处的幸福，一个人跑去sc一学就是一整天，脑子里什么都不想，只想把该死的题写完，把该死的代码看明白。我的reading week实在太丰富，完成了给自己安排的学习任务，晕着跑了两个多小时才到kp见到了下月，和下月扯淡的时候，我的大脑总会告诉我我现在很幸福，何其有幸遇到了这么好的麻麻，去ic蹭吃蹭喝，一个人又跑到剑桥，在czy的房间里留下一句不要搞*，和lina偶遇了秋云，控诉一下czy和mi带我在剑桥吃麦当劳还是我请客。跟着静静回了牛津，我真的太喜欢这个城市，牛津像是我在逃避繁闹伦敦的乌托邦，在high street，我说我闻到了久违的咖啡香香水香烘焙香，在我12岁第一次初登欧洲大陆时就幻想能来这里上学，没想到六年后我真的愿望实现，我由衷感谢爸妈对我教育的投资。我在牛津呆了三天，跟着在牛津认识的新朋友看了烟花，跑去了偏远的lmh，没花一分钱进了Christ Church，见到了在hp中出现的场景，我对牛津的执念早就没了，我是打心底里喜欢这个城市，喜欢这里的氛围，喜欢这里的一切。整个11月我都在图书馆，逐渐上难度的线代，开始翘课补不完的笔记，我很喜欢下午放了学钻进sc，七八点跑去学校西边探索好吃的，再哼着小曲花25min走回宿舍。那段一个人待着的时间我思考了很多问题，为了哄自己上学还定期更新在伦敦的100件幸福小事，学数学很快乐，时间过得更是快，一眨眼来到了12月，我要回国了。</p>
+          <p>回国前不幸发烧了嘻嘻，朋友们的关心让我心里暖暖的，走之前我又在感慨伦敦这座城市，确实让我又爱又恨，我有伦敦病，伦敦我想你了。12.8我终于回了济南，爸妈一起在高铁站等着我，30个小时没有合眼，我终于可以把我的行李全部扔掉，舒舒服服窝进车里，看着窗外陌生又熟悉的济南，我竟然回来了，我没有想过圣诞回家，这只是我10月某个半夜冲动订票的产物。回家太安逸了，随时随地能喝到的热水，想点就点的外卖，过去在伦敦的三个月好似梦一样，一切都很不真实。我用一整周才恢复了作息，接受了我从英国留学放假回家的现实，回家的这十几天，我在有条不紊地复习，花了将近10天才把知识点理完，敢开始刷题，期间休息时间都在看德赫，我已经啃完四部同人了，不愧是我们全球第一bg，粮真的太香太香。其实我复习起来并不难受，尤其是数学分析，是我接触了一年多的东西，此刻我就要感谢自己过去的持续学习，让我现在变得更加游刃有余，在安慰拿到拒信的学弟我是这么说的，“哪怕你现在没有觉得paid off，但是一年后踏入大学生活，你会发现过去坚实的基础会让你学得更顺，你还是会感谢自己过去的努力”，学姐跟我说，“努力不是没有结果，是不到时候”。我现在终于可以大声地说我放下了所有，我现在热爱我的学校，热爱我的生活，热爱我的学习节奏，热爱我身边的一切。前段时间和学长聊天，我突然意识到我其实并不算喜欢我过去一直以来想走的路，一瞬间像是信仰崩塌，但这一路走来确实都很值得，我有底气换赛道重来，就像学长说的，管那么多干啥，干就完了。</p>
+          <p>还有12天就要回伦敦了，今年的12月我很幸福，我不再想那么多，满是坦然与坚定。感谢自己今年有用文字记录情绪的习惯，我能清晰感知到我的变化与成长，在这一年我收获了很多，成长了很多，2025的确是我的best year，我的18岁很幸福。</p>
+        </div>
+      </details>
+
+      <details class="journal-card" id="journal-entry-3">
+        <summary>
+          <span class="journal-date">2025年7月15日</span>
+          <h3>LUMI2025 小作文</h3>
+          <span class="journal-deck">一次夏令营重逢，把同学变成同事，也把一群人变成可以跨越距离继续相见的家人。</span>
+          <span class="journal-read" aria-hidden="true"></span>
+        </summary>
+        <div class="journal-body">
+          <p>2025.6.28-2025.7.20🌏无锡 爱能克服远距离，多远都要在一起🫶🏻</p>
+          <p>【25.7.15凌晨三点】离夏令营结束还有五天，tyy突然问我你写最后的小作文了吗，于是在我感情最充沛的深夜，我打开了一个多月没有用的notes，因为我很久没有大的情绪波动了。</p>
+          <p>这一次是重逢，我们的关系从去年的同学变成了今年的同事，很巧的是分开的一年里我们都在不同的城市里重聚过。所有人都在申请季的这年飞快成长，处理问题更成熟，看待事情更理性，情绪更加稳定，人也更佳开朗，无数次的夜聊让我们的关系越来越近。我很珍惜我生命里的每一段友谊，每个人的存在对我来说都无比珍贵。一场剧本杀让我们慢慢成为了家人，自习室门口大大的陶宅，一个眼神就能读懂对方的默契，排斥肢体接触的我也会自然而然被吸走。21天好快，我们每天都在模面，批作业，和考勤，桌游，剧本杀，uno，掼蛋，狼人杀，骗子酒馆，德扑，德国心脏病，羽毛球，下棋…还有我逐渐听不懂的groups，zyc说去年吵闹的是我们这帮子，今年还是我们。“多邻国”黑板上写满了我们中文/英文听写的战况，多语言翻译“小恐龙”，后门堆满的零食，当然还有mock完我们激情输出的固定节目（我一直是温柔人设从不喷人的哈！）</p>
+          <p>好幸运遇到了一群善良的朋友，在我难过时安慰我，帮我拿外卖，不遗余力地帮我推进问题，每个人都是很安心靠谱的存在，总是值早班的cheng，先解决问题再解决情绪的mi，很懂语言艺术的苏哥，内核极其强大的小猪米，活人感十足&amp;世界上另一个我的tyy。我们每天都在想法设法溜出去干饭，对零食店念念不忘，每天一杯奶茶的kpi，教室里两个角落分别是外卖区和打牌区，半夜1点我们还在大厅互戳吃瓜，结果发现每个人好聊的都那么浅薄。要走的前一天，我们三个在宿舍里大唱普通朋友&amp;最初的记忆，半夜和tyy作为两个estj在common room大哭特哭。</p>
+          <p>今年我的视角发生变化，我真的完全能共情大家，一想到我去年给喂了那么多屎我就想羞愧地钻进书桌。我很想把我申请季的故事简述给大家，真的希望大家不要走我的坑，拜托一定一定要摆正好心态，不要有病态的追求，累了就休息，别给自己太大负担（别和我一样抑郁躯体化考试全废了），压力大了可以和我聊天，我完全可以提供情绪价值。允许自己犯错，允许自己的不完美，平和接受自己的落后，慢慢来一定会赢的，把握好属于自己的节奏。</p>
+          <p>去年我会想和大家分别是不是就再也见不到了，在回家的高铁上哭了一个多小时，因为我害怕这是我这辈子最后一次见到一些人，我害怕我们只是summercamp的关系😭但现实是uno群活跃了近一年，正式分别的日子里我也陆陆续续和大家见了六次，准备面试的时候也是每天都在线上见到。这一次分别我会更加平和，我清楚知道和大家两个月后能在英国重逢，不存在不确定性，我们是一条消息就能立马见到对方的关系。还是会感慨我们过去一年都太不容易了，有时候我都不敢回忆我申请季最崩溃的那段日子，孤立无援，独自消化来自自己和外界的焦虑情绪，在家没有人能开导我，经常睁着眼望着天花板到早上七点，连轴考连轴跑。最近的四五个月我一直在与自己和解，尝试去爱自己，身上的刻薄有在慢慢消失，甚至短暂从estj变成了entp，希望自己能好好珍惜接下来一个月的休息时间。</p>
+          <p>特别鸣谢经常请吃饭的帅哥克里斯，我们是幸福的有鸡爸爸护着的小鸡仔，每天都无比踏实和安心。终于成功网友面基的tyy，还是会感慨世界上怎么有人和我如此同频，我们从每天视奸对方pyq/状态的关系，到现在可以随时随地靠在对方身上，手牵着手一起走的好龟龟。还有我的老舍友猪米，我真的无数次感叹你身上的强大稳定，真的是什么事情都能坦然最好的存在，回宿舍干的事情还是打破我认知了，甚至已经开始喷我现在不抹粉了。我是个嘴硬的人，越在乎的事情我会装得越不以为意，或许我是清楚自己内心的，故事的结局只能是happiness。</p>
+          <p>回看我在无锡的这二十多天，发现自己不知不觉还是成长了好多，我又重新找回了一种松弛的状态，像是找到了一个世外桃源暂时隐居避世。再次感恩和每个人的相遇，26f的朋友们申请季顺利，所求皆所愿，所愿即所得，难过了可以随时call我。tyy看到这里不要哭哦，不要太想我，9月份答应我要来济南的🥹👋</p>
+        </div>
+      </details>
+
+      <details class="journal-card" id="journal-entry-4">
+        <summary>
+          <span class="journal-date">2025年5月</span>
+          <h3>在叽歪国际的三年</h3>
+          <span class="journal-deck">从心高气傲地选择国际部，到在申请季的失意里重新理解学习、失败和适合自己的路。</span>
+          <span class="journal-read" aria-hidden="true"></span>
+        </summary>
+        <div class="journal-body">
+          <p>16岁的我，拒绝了初中所在集团的高中国际部和普通部报送，放弃了全省第一高中的录取，毅然去了现在的学校，那时我心高气傲。18岁申请季，接连收到牛津ic拒信，抑郁崩溃，全年2/3的夜晚都在被窝里嚎啕大哭。</p>
+          <p>我嘴上说着对牛剑无感，心里却暗暗发誓我要冲牛剑，高中入学在毕业信上写，“嗨18岁的fhr，想必你现在已经收到帝国理工的offer了吧”。东亚小孩习惯性用学历证明自己，从小的耀眼让我不允许自己失败，我要上就要去最好的学校，我要给父母争光，让初中母校为我骄傲。高一时提前比同学多学一科，同时应付国内课程，三门alevel，和雅思的学习，我用了很长的时间去找适合自己的状态节奏。第一次大考碰上复阳，出了成绩崩溃大哭，那时我少数的失败，只能接受现实retake，写了上百篇econ essay，后在分数线很高的季度拿到了满意成绩。英语学习并不顺利，从小兢兢业业跟着课本学，很少有机会课外拓展，一开始根本不敢跟外教说话，稳定不变的雅思成绩让我惧怕语言，也是大战了无数次才在申请季前的夏天拿到理想成绩。我在朋友圈说，高一焦虑掉出学校最好的班级，高二焦虑拿不到A*，那些当时在我眼里天会塌的大事，在18岁的我眼里是那么举足轻重。没准备好的step，不敢查成绩的mat，神经衰弱状态下考出来的tmua，一步步击垮我，我真的适合数学吗，我的自学能力真的可以吗，我是不是只适合安安稳稳跟着老师的节奏来。被牛津拒的那天，我听着朋友们的安慰哭到凌晨五点，我在笔试面试都付出了好多，上百页的题目整理，无数次的模面，可是这一切好似都没有paid off。我觉得对不起父母栽培，对不起老师们信任，我无数次质问自己是不是一直在自我欺骗，其实已经快半年了，但我还没有释然，还常会半夜动容落泪。所幸提前开始的alevel，让我提前半年达con，拿到4个实考成绩，有了接近8个月的假期去提升自己。开始时我基本一天写一套step，我想重申，我要上剑桥，后随着时间推移和大环境也让我认清自己，不如去更适合自己的地方。后来我就开始读专业书，预习大学课程，看不懂分析证明急得直跺脚。</p>
+          <p>和父母朋友在去了8个城市，去健身房爬坡，打卡网红店，看了几十部电视剧电影纪录片，开始接触游戏。生活是那么丰富多彩，何必要把所有时间都放在重复无数次的学习。我的状态逐渐调整，开始思考未来的路，本科申请并不顺利，唯一能做的就是解决问题，结果或许没有那么重要。</p>
+        </div>
+      </details>
+    </div>
+    <!-- JOURNAL_GALLERY_END -->
   </div></div></section>
 
   <section id="more"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">the rest of me</span></div><div class="pad">

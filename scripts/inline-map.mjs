@@ -38,10 +38,30 @@ const escapeAttribute = (value) => String(value)
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;');
 
-let shapes = geo.features.map((feature) => {
+const renderFeature = (feature, label, cssClass, country = label) =>
+  `<path class="${cssClass}" d="${path(feature)}" data-country="${escapeAttribute(country)}" data-n="${escapeAttribute(label)}"><title>${escapeAttribute(label)}</title></path>`;
+
+let shapes = geo.features.flatMap((feature) => {
   const name = feature.properties.name || '';
-  const cssClass = visited.has(name) ? 'been' : 'land';
-  return `<path class="${cssClass}" d="${path(feature)}" data-n="${escapeAttribute(name)}"><title>${escapeAttribute(name)}</title></path>`;
+  if (name === 'France' && feature.geometry.type === 'MultiPolygon') {
+    return feature.geometry.coordinates.map((coordinates) => {
+      const part = {
+        type: 'Feature',
+        properties: feature.properties,
+        geometry: { type: 'Polygon', coordinates }
+      };
+      const [longitude] = context.d3.geoCentroid(part);
+      const isFrenchGuiana = longitude < -20;
+      return renderFeature(
+        part,
+        isFrenchGuiana ? 'French Guiana (France)' : 'France',
+        isFrenchGuiana ? 'land' : 'been',
+        'France'
+      );
+    });
+  }
+
+  return [renderFeature(feature, name, visited.has(name) ? 'been' : 'land')];
 }).join('');
 
 for (const [name, latitude, longitude] of regions) {

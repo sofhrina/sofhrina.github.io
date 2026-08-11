@@ -97,6 +97,19 @@ a{color:inherit}
 .w-now li{list-style:none;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.2);font-size:13.5px;color:#fff;line-height:1.45}
 .w-now li:last-child{border:0;padding-bottom:0}
 .w-now ul{margin:0;padding:0}
+.guest-invite{background:var(--cream);border:1px solid rgba(255,255,255,.45)}
+.guest-invite .pad{padding:18px 20px 20px}
+.guest-invite .hello{margin:0 0 7px;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.13em;color:#8C73AA}
+.guest-invite h3{font-size:23px;line-height:1.08;margin:0 0 8px}
+.guest-invite p{font-size:12px;line-height:1.55;color:var(--ink-2);margin:0 0 13px}
+.trace-link{display:inline-flex;background:var(--yellow);color:var(--yellow-ink);border-radius:8px;padding:7px 11px;text-decoration:none;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.05em;box-shadow:0 4px 0 #C89E0E;transition:transform .2s var(--spring),box-shadow .2s}
+.trace-link:hover{transform:translateY(-2px);box-shadow:0 6px 0 #C89E0E}
+.contact-strip{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--yellow);color:var(--yellow-ink);padding:13px 15px;margin:2px 4px 24px;border-radius:3px;transform:rotate(-1.4deg);box-shadow:0 12px 26px rgba(30,10,60,.26)}
+.contact-strip span{font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+.contact-strip a{font-family:Fraunces,Georgia,serif;font-size:15px;text-decoration:none;white-space:nowrap}
+.contact-strip a:hover{text-decoration:underline}
+.menu-contact{color:#F5C518;text-decoration:none;margin-right:14px}
+.menu-contact:hover{text-decoration:underline}
 
 /* stickies */
 .sticky{background:var(--yellow-soft);border-radius:3px;padding:15px 17px;box-shadow:0 14px 30px rgba(30,10,60,.3);margin-bottom:22px;transition:transform .3s var(--spring)}
@@ -253,7 +266,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
 <body>
 
 <div class="screen">
-  <div class="menubar"><span class="mono">Huiru Feng</span><span class="mono">London</span></div>
+  <div class="menubar"><span class="mono">Huiru Feng</span><span class="mono"><a class="menu-contact" href="mailto:hi@sofhrina.com">Email ↗</a>London</span></div>
 
   <div class="stage">
 
@@ -402,6 +415,21 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
           <a class="more" href="#more" style="display:inline-block;margin-top:11px">Have a look →</a>
         </div>
       </article>
+
+      <article class="win guest-invite tilt-b out-r">
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">guestbook.exe</span></div>
+        <div class="pad">
+          <p class="hello">YOU MADE IT THIS FAR</p>
+          <h3>Leave a little proof<br>you were here.</h3>
+          <p>Kind thoughts, oddly specific recommendations, and small hellos are all welcome.</p>
+          <a class="trace-link" href="guestbook.html">Leave a trace →</a>
+        </div>
+      </article>
+
+      <aside class="contact-strip">
+        <span>Something less public?</span>
+        <a href="mailto:hi@sofhrina.com">hi@sofhrina.com ↗</a>
+      </aside>
 
       <div class="catwrap">
         <span class="catsay">Not that I care. But you've got this.</span>
@@ -637,7 +665,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
 
 </main>
 
-<footer><p>huiru.feng.25@ucl.ac.uk · London · <a href="https://github.com/sofhrina">GitHub</a> · <a href="https://www.linkedin.com/in/huirufeng429/">LinkedIn</a></p></footer>
+<footer><p><a href="mailto:hi@sofhrina.com">hi@sofhrina.com</a> · London · <a href="https://github.com/sofhrina">GitHub</a> · <a href="https://www.linkedin.com/in/huirufeng429/">LinkedIn</a></p></footer>
 
 
 

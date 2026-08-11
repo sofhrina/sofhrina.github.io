@@ -6,6 +6,20 @@ Source files for Huiru Feng's personal website.
 
 This is a static site. GitHub Pages can publish it directly from the repository root on the `main` branch.
 
+## Journal
+
+Journal source files live in `journal/entries/`. The homepage gallery is generated from those Markdown files, so articles should not be pasted into `index.html` by hand.
+
+To add an entry:
+
+```bash
+npm run journal:add -- "/absolute/path/to/article.md" \
+  --date 2026-08-11 \
+  --summary "A one- or two-sentence introduction."
+```
+
+The command copies the article into the repository and rebuilds the gallery. Dates may be written as `YYYY`, `YYYY-MM`, or `YYYY-MM-DD`. See `journal/README.md` for the complete branch, check, and pull-request workflow.
+
 ## Guestbook
 
 The public guestbook page talks to a Cloudflare Worker at `guestbook-api.sofhrina.com`.

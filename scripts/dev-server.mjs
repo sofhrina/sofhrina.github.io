@@ -63,6 +63,6 @@ http.createServer((req, res) => {
   }
   res.writeHead(200, { 'content-type': types[path.extname(file)] || 'application/octet-stream' });
   fs.createReadStream(file).pipe(res);
-}).listen(port, '0.0.0.0', () => {
+}).listen(port, '127.0.0.1', () => {
   console.log(`Personal site preview: http://localhost:${port}`);
 });

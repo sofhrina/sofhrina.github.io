@@ -25,4 +25,16 @@ for (const file of ['guestbook.js', 'cloudflare/guestbook-api/src/index.js', 'cl
   new Function(source.replace(/^import .*;$/m, '').replace(/^export default/m, 'return'));
 }
 
+const guestbookApi = fs.readFileSync('cloudflare/guestbook-api/src/index.js', 'utf8');
+for (const origin of [
+  'http://sofhrina.com',
+  'http://www.sofhrina.com',
+  'https://sofhrina.com',
+  'https://www.sofhrina.com'
+]) {
+  if (!guestbookApi.includes(`'${origin}'`)) {
+    throw new Error(`Guestbook API is missing the allowed origin ${origin}`);
+  }
+}
+
 console.log('Site structure and JavaScript syntax checks passed.');

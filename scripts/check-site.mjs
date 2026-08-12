@@ -4,6 +4,8 @@ import path from 'node:path';
 const requiredFiles = [
   '.nojekyll',
   'index.html',
+  'robots.txt',
+  'sitemap.xml',
   'guestbook.html',
   'guestbook.css',
   'guestbook.js',
@@ -25,6 +27,26 @@ const journalEntries = fs.readdirSync('journal/entries')
 if (!journalEntries.length) throw new Error('Journal needs at least one Markdown entry');
 
 const indexHtml = fs.readFileSync('index.html', 'utf8');
+for (const identity of ['Huiru Feng', '冯绘如', 'Sophia Feng', 'Sofhrina']) {
+  if (!indexHtml.includes(identity)) throw new Error(`SEO identity is missing ${identity}`);
+}
+for (const seoMarker of [
+  'application/ld+json',
+  'https://schema.org',
+  'https://sofhrina.com/#huiru-feng'
+]) {
+  if (!indexHtml.includes(seoMarker)) throw new Error(`index.html is missing SEO marker ${seoMarker}`);
+}
+
+const robots = fs.readFileSync('robots.txt', 'utf8');
+if (!robots.includes('Sitemap: https://sofhrina.com/sitemap.xml')) {
+  throw new Error('robots.txt does not advertise the canonical sitemap');
+}
+
+const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
+for (const url of ['https://sofhrina.com/', 'https://sofhrina.com/guestbook.html']) {
+  if (!sitemap.includes(`<loc>${url}</loc>`)) throw new Error(`sitemap.xml is missing ${url}`);
+}
 for (const marker of [
   'JOURNAL_PREVIEW_START',
   'JOURNAL_PREVIEW_END',

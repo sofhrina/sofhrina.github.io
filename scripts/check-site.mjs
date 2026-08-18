@@ -4,6 +4,9 @@ import path from 'node:path';
 const requiredFiles = [
   '.nojekyll',
   'index.html',
+  'about.html',
+  'library.html',
+  'interior.css',
   'robots.txt',
   'sitemap.xml',
   'guestbook.html',
@@ -38,13 +41,20 @@ for (const seoMarker of [
   if (!indexHtml.includes(seoMarker)) throw new Error(`index.html is missing SEO marker ${seoMarker}`);
 }
 
+for (const page of ['about.html', 'library.html']) {
+  const html = fs.readFileSync(page, 'utf8');
+  if (!html.includes('<link rel="canonical"')) throw new Error(`${page} is missing its canonical URL`);
+  if (!indexHtml.includes(`href="${page}"`)) throw new Error(`Homepage does not link to ${page}`);
+  if (!html.includes('href="index.html"')) throw new Error(`${page} does not link back to the homepage`);
+}
+
 const robots = fs.readFileSync('robots.txt', 'utf8');
 if (!robots.includes('Sitemap: https://sofhrina.com/sitemap.xml')) {
   throw new Error('robots.txt does not advertise the canonical sitemap');
 }
 
 const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
-for (const url of ['https://sofhrina.com/', 'https://sofhrina.com/guestbook.html']) {
+for (const url of ['https://sofhrina.com/', 'https://sofhrina.com/about.html', 'https://sofhrina.com/library.html', 'https://sofhrina.com/guestbook.html']) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) throw new Error(`sitemap.xml is missing ${url}`);
 }
 for (const marker of [
@@ -66,7 +76,7 @@ for (const file of journalEntries) {
   if (!indexHtml.includes(value)) throw new Error(`${file} has not been built into index.html`);
 }
 
-for (const file of ['index.html', 'guestbook.html', 'cloudflare/guestbook-admin/public/index.html']) {
+for (const file of ['index.html', 'about.html', 'library.html', 'guestbook.html', 'cloudflare/guestbook-admin/public/index.html']) {
   const html = fs.readFileSync(file, 'utf8');
   if (!html.includes('<!DOCTYPE html>')) throw new Error(`${file} is not an HTML document`);
 }

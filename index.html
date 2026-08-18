@@ -75,9 +75,9 @@ a{color:inherit}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-.screen{position:relative;background:linear-gradient(152deg,var(--violet-1) 0%,var(--violet-2) 40%,var(--violet-3) 76%,var(--violet-deep) 100%);overflow:hidden;padding-bottom:140px}
-.menubar{display:flex;justify-content:space-between;align-items:center;height:30px;padding:0 18px;background:rgba(255,255,255,.14);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#F3EBFF;font-size:12px;position:relative;z-index:60}
-.menubar .mono{color:#EBDFFA}
+.screen{position:relative;background:linear-gradient(152deg,var(--violet-1) 0%,var(--violet-2) 40%,var(--violet-3) 76%,var(--violet-deep) 100%);overflow:hidden;padding-bottom:78px}
+.menubar{display:flex;justify-content:space-between;align-items:center;min-height:38px;padding:0 18px;background:rgba(46,25,78,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#F3EBFF;font-size:10px;position:sticky;top:0;z-index:60}
+.menubar .mono{color:#EBDFFA}.menubar>a{color:#F3EBFF;text-decoration:none;white-space:nowrap}.menubar nav{display:flex;align-items:center;gap:16px;overflow-x:auto;white-space:nowrap;margin-left:20px;scrollbar-width:none}.menubar nav::-webkit-scrollbar{display:none}.menubar nav a{color:#F3EBFF;text-decoration:none;opacity:.72;transition:opacity .2s,color .2s}.menubar nav a:hover,.menubar nav a[aria-current="page"]{opacity:1;color:var(--yellow)}
 
 .stage{max-width:1240px;margin:0 auto;padding:34px 26px 0;display:grid;grid-template-columns:1fr 1.34fr 1fr;gap:26px;align-items:start}
 .col{display:flex;flex-direction:column}
@@ -99,6 +99,7 @@ a{color:inherit}
 .w-name .rule{height:3px;background:var(--yellow);margin:14px 0 10px;width:62px}
 .w-about .lead{font-size:17px;line-height:1.4;margin:0 0 11px}
 .w-about p{margin:0 0 10px;font-size:13.5px;line-height:1.66;color:var(--ink-2)}
+.w-about .about-en{font-family:Fraunces,Georgia,serif;font-size:15px;line-height:1.52;color:var(--ink);margin-bottom:12px}.w-about .about-zh{font-size:12.5px;line-height:1.72;color:var(--ink-3)}
 .fillme{border-left:3px solid var(--yellow);padding:6px 0 6px 13px;margin-top:13px;font-size:12.5px;color:var(--ink-3)}
 .grade{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--hair);font-size:13.5px}
 .grade:last-child{border:0}
@@ -260,6 +261,7 @@ a{color:inherit}
 .chips li{background:var(--cream);border:1px solid #EFE4CC;border-radius:8px;padding:5px 11px;font-size:13px}
 .grp{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 7px}
 @media(max-width:760px){
+  .menubar{padding:0 12px}.menubar>a{display:none}.menubar nav{margin-left:0;gap:13px;width:100%}
   .flow{height:auto;perspective:none;overflow-x:auto;display:flex;gap:12px;scroll-snap-type:x mandatory;padding-bottom:10px}
   .cf{position:static!important;margin:0;flex:none;transform:none!important;opacity:1!important;scroll-snap-align:center}
   .flow-nav button{display:none}
@@ -326,7 +328,10 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
 <body>
 
 <div class="screen">
-  <div class="menubar"><span class="mono">Huiru Feng</span><span class="mono"><a class="menu-contact" href="mailto:hi@sofhrina.com">Email ↗</a>London</span></div>
+  <div class="menubar">
+    <a class="mono" href="index.html">Huiru Feng · Sofhrina</a>
+    <nav class="mono" aria-label="Site pages"><a href="index.html" aria-current="page">Desk</a><a href="about.html">About</a><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="#journal">Journal</a><a href="library.html">Library</a><a href="guestbook.html">Guestbook</a></nav>
+  </div>
 
   <div class="stage">
 
@@ -358,8 +363,9 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
       <article class="win w-about tilt-b nudge">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">about.txt</span></div>
         <div class="pad">
-          <p class="lead">Nineteen, reading maths at UCL.</p>
-          <p style="margin-bottom:0">I keep a taxonomy of my own mathematical errors and work through them one category at a time. I have come to trust a plan that can be revised over one that has to be defended.</p>
+          <p class="about-en">I keep two kinds of notebooks: one for errors I can name, and one for questions I cannot yet answer. I do not place my faith in brilliance, but in returning—to the page, the proof, and the unfinished problem—until something opens.</p>
+          <p class="about-zh">我有两种笔记本：一本收纳能够命名的错误，一本留给尚未回答的问题。我不把希望寄托于天赋，而相信一次次回来——回到纸页、证明与未完成的问题前，直到某处慢慢打开。</p>
+          <a class="more" href="about.html" style="display:inline-block;margin-top:11px">The longer version →</a>
         </div>
       </article>
 
@@ -408,7 +414,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
           <div class="divider" style="margin:18px 0"></div>
           <h3 style="font-size:19px">Fallacy detection in UK parliamentary debate</h3>
           <p class="meta">Dataset construction · with a PhD researcher at UCL · student journal, late 2026</p>
-          <a class="more" href="#research" style="display:inline-block;margin-top:14px">Read more →</a>
+          <a class="more" href="research.html" style="display:inline-block;margin-top:14px">Read more →</a>
         </div>
       </article>
 
@@ -423,7 +429,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
           <div class="role"><span class="tile">IG</span><div><b>Front-end Development Intern</b><span>Inspur Group · Jun – Aug 2026</span></div></div>
           <div class="role"><span class="tile">DS</span><div><b>Head of Project Labs</b><span>UCL Data Science Society · Mar 2026 –</span></div></div>
           <div class="role"><span class="tile">LU</span><div><b>Maths Teaching Assistant</b><span>Lumi Summer School · Jul 2025</span></div></div>
-          <a class="more" href="#career">Full history →</a>
+          <a class="more" href="experience.html">Full history →</a>
         </div>
       </article>
 
@@ -435,7 +441,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
           <div class="entry"><b>Algorithms and Big-O</b><span>Four sorts from scratch, empirical timing, and a decision-tree lower-bound argument.</span></div>
           <div class="entry"><b>Strategic M&amp;A valuation</b><span>DCF, comps and WACC on a semiconductor case. Cross-university team.</span></div>
           <div class="entry"><b>Cross-sectional alpha, auto sector</b><span>Team project. Being rewritten from scratch.</span></div>
-          <a class="more" href="#projects">All projects →</a>
+          <a class="more" href="projects.html">All projects →</a>
         </div>
       </article>
 
@@ -460,7 +466,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div>
         <div class="pad">
           <!-- JOURNAL_PREVIEW_START -->
-          <div class="entry"><span class="tag t2">journal</span><b>19岁生日反思</b><span>在离二十岁更近一步时，我重新看待平凡、孤独、表达与成长，也试着承认自己已经拥有解决问题的能力。</span></div>
+          <div class="entry"><span class="tag t2">journal</span><b>26summer的一半一半</b><span>早早过上了养生生活。</span></div>
           <!-- JOURNAL_PREVIEW_END -->
           <a class="more" href="#journal">Every entry →</a>
         </div>
@@ -515,29 +521,9 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
     </div>
   </div>
 
-  <nav class="dock" aria-label="Sections">
-    <a href="#about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg><b>About</b></a>
-    <a href="#academic"><svg viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><b>Academic</b></a>
-    <a href="#research" class="accent"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><b>Research</b></a>
-    <a href="#projects"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg><b>Projects</b></a>
-    <a href="#career"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg><b>Career</b></a>
-    <a href="#journal"><svg viewBox="0 0 24 24"><path d="M5 4h13a1 1 0 0 1 1 1v15H6a1 1 0 0 1-1-1z"/><path d="M9 4v16"/></svg><b>Journal</b></a>
-    <a href="#more"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg><b>More</b></a>
-  </nav>
 </div>
 
 <main>
-
-  <section id="about"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">about</span></div><div class="pad">
-    <h2>About</h2>
-    <p class="kicker">Second-year Mathematics undergraduate at UCL.</p>
-    <p>At nineteen, I am studying mathematics in the UK as a Chinese student. My childhood in Shandong made me aware of the quiet script written for many women: study hard, find security, marry well, and shape a life around the expectations of others. While other children dreamed of meeting Prince Charming, my ambition was to create something of my own.</p>
-    <p>Data science, artificial intelligence, and the wider world of ideas hold a particular fascination for me. Answers alone rarely satisfy me. What matters is the reasoning beneath them and the freedom to question them.</p>
-    <p>Ambition becomes manageable through systems. I keep a taxonomy of my own mathematical errors, from skipped steps to final-line miscalculations to proofs argued in the wrong direction, and work through them one category at a time. I have come to trust a plan that can be revised more than one that has to be defended.</p>
-    <p>Writing, reflection, and tears are how I make sense of an inner world. Wisdom, to me, begins with the willingness to ask why a thought or feeling exists.</p>
-    <p>The woman I hope to become is brave, free, and grounded. She feels fear and doubt, and makes her choices anyway. She defines her life on her own terms. She can lose her footing, understand why, and stand again.</p>
-    <p style="color:var(--ink-3);border-left:3px solid var(--yellow);padding-left:16px;font-family:Fraunces;font-size:16px">I am no bird; and no net ensnares me: I am a free human being with an independent will.<br><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em">charlotte brontë · jane eyre</span></p>
-  </div></div></section>
 
   <section id="academic"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">academic</span></div><div class="pad">
     <h2>Academic</h2>
@@ -555,71 +541,36 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
     <p>I plan to continue to a master's and then a PhD. For now that mostly means learning to do research properly rather than quickly. Reading the methods literature carefully, and getting used to writing down what I do not yet know.</p>
   </div></div></section>
 
-  <section id="research"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">research</span></div><div class="pad">
-    <h2>Research</h2>
-    <p class="kicker">Both projects are in progress. Drafts available on request.</p>
-    <h3>Robust factor decomposition for hierarchical consumer segmentation</h3>
-    <p class="when">Jul 2026 – present · with a PhD mentor</p>
-    <p>Standard k-means fails on high-dimensional consumer data for reasons that look like three separate problems but trace back to two design choices. Euclidean distance assumes dimensions are orthogonal and comparably scaled, so correlated features get counted more than once; and a single flat partition cannot express nested structure like "spending tier → price sensitivity".</p>
-    <p>I'm working on a pipeline that replaces the hand-set decisions, meaning thresholds, cluster count and factor weights, with parameters learned from the data: a robust loss in place of maximum likelihood, learnable factor weights under an L1 penalty, and two-level clustering so one result can be read at whichever granularity a decision needs. I wrote the abstract, introduction and methodology chapters.</p>
-    <p class="status">Methodology drafted. Experiments not yet run, so there are no results to report.</p>
-    <div class="divider"></div>
-    <h3>Fallacy detection in UK parliamentary debate</h3>
-    <p class="when">Apr 2026 – present · with a PhD researcher at UCL · student journal, late 2026</p>
-    <p>A small team project on argument mining. The work started as multimodal fallacy detection and narrowed over three months to a text-based dataset.</p>
-    <p>My contributions: proposing the UK parliamentary questioning setting, identifying a workable label set, and building the annotated dataset using argumentation framework structures and IAT-style argument graphs. The main text is written by the PhD researcher leading the project.</p>
-  </div></div></section>
-
-  <section id="projects"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">projects</span></div><div class="pad">
-    <h2>Projects</h2>
-    <p class="kicker">Things I built, including one I'm taking apart again.</p>
-    <h3>Algorithms and Big-O</h3>
-    <p class="when">May – Jun 2026 · Python, Matplotlib · UCL Year 1 summer project</p>
-    <p>I implemented bubble sort, merge sort, quicksort and counting sort from scratch in Python, without library shortcuts, so that the cost of every operation stayed visible in the code. I then designed timing experiments across input sizes from 100 to 10,000 elements and plotted the results on a logarithmic scale, which made the separation between O(n²), O(n log n) and O(n + k) growth something I could see rather than something I had been told.</p>
-    <p>The theory turned out to be the part I got most out of. I worked through the decision tree argument for the Ω(n log n) lower bound on comparison based sorting. Any algorithm restricted to pairwise comparisons has to distinguish between n! possible orderings, so its decision tree needs at least n! leaves, and a binary tree with n! leaves has depth at least log₂(n!), which is Θ(n log n). Counting sort escapes the bound because it never compares two elements with each other at all. It reads their values directly and uses them as indices, which only works when the range of values is known and bounded.</p>
-    <p>Writing up the proof in English rather than in symbols was harder than the implementation, and it was the first time I understood the difference between following an argument and being able to reconstruct it.</p>
-    <h3>Cross-sectional alpha strategy, auto sector</h3>
-    <p class="when">Jan – Mar 2026 · team project, UCL Data Science Society · being rewritten</p>
-    <p>A cross-sectional ranking pipeline over nine global automotive equities. Raw prices were converted to daily returns to line up trading hours across time zones, momentum, volatility and RSI factors were ranked within each cross-section so that absolute levels became percentiles, and the model was a depth constrained Random Forest scored with Spearman rank IC rather than RMSE, because what matters is the ordering of the names and not the size of the error.</p>
-    <p><a class="repo" href="https://github.com/sofhrina/auto_stock_strategy">github · auto_stock_strategy</a></p>
-    <p>I am rewriting it from scratch. The reported Sharpe ratio was high enough that it almost certainly hides a bug, most likely look ahead bias or an absence of transaction costs, and I want to be able to say what every line does before I put my name on the result.</p>
-    <h3>Strategic M&amp;A valuation</h3>
-    <p class="when">Feb – Mar 2026 · cross-university team (UCL, Cambridge, LSE, Imperial)</p>
-    <p>Our team acted for Samsung Electronics and had to pick an acquisition target in the semiconductor sector, then defend the price we put on it. We screened candidates and settled on Lattice Semiconductor, a designer of low power FPGAs, on the grounds that Samsung had almost no presence in programmable logic while its foundry share sat near 9% against TSMC's 64%.</p>
-    <p>I led the quantitative work. I built a five year forecast from management guidance, with revenue growth tapering from 37% to 15% and EBIT margin recovering from 15% toward 28% as operating leverage returned. WACC came out at 11.45% using CAPM with a beta of 1.67 and a risk free rate of 4.04%, alongside a 2.5% terminal growth rate and an 18% normalised tax rate.</p>
-    <p>What I remember most is that the three methods disagreed with each other. DCF gave a floor of $22 to $35, EV/Revenue gave $28 to $35, and forward EV/EBITDA gave $60 to $137. We recommended $127 per share, a 30% premium to the $98 market price. Most of that spread comes from things a spreadsheet cannot produce: control of the asset, the HARMAN automotive integration, and the case for bundling Samsung HBM memory with Lattice programmable logic in the same AI server. Learning to write the argument for why a premium is defensible taught me more than building the model did.</p>
-    <h3>AI wearable concept</h3>
-    <p class="when">Apr 2026 · 7-person cross-university team</p>
-    <p>A seven person team from UCL, Oxford and Bristol working on a companion wearable for anxiety detection in university students. I handled the market side, which meant sizing the segment, mapping the existing products and where they fell short, and working out how a device like this would actually reach the people it was designed for.</p>
-    <p>It was the first time I had to argue for something without a proof behind it, and I found the ambiguity harder than any of the maths.</p>
-  </div></div></section>
-
-  <section id="career"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">career</span></div><div class="pad">
-    <h2>Career</h2>
-    <p class="kicker">Open to summer 2027 internships.</p>
-    <h3>Algorithm Team Intern · Inspur Group</h3>
-    <p class="when">Aug 2026 – present · Jinan, China</p>
-    <p>Working under an algorithm mentor: extracting and restructuring SQL query output for analysis, migrating a MySQL/SQLite schema to GaussDB, and sourcing container images for a YOLO deployment. Early days, and mostly a matter of learning how the infrastructure fits together.</p>
-    <h3>Front-end Development Intern · Inspur Group</h3>
-    <p class="when">Jun – Aug 2026 · Jinan, China</p>
-    <p>Worked under a mentor on a WeChat mini-program for staff canteen ordering, covering cart, order lifecycle, merchant fulfilment and menu management. The implementation leaned heavily on AI-assisted coding; my contribution was finding where the generated logic broke, in pricing precision and in order state transitions, and driving it to a working build. First hands-on experience with git, front-end/back-end separation and JSON.</p>
-    <h3>Head of Project Labs · UCL Data Science Society</h3>
-    <p class="when">Mar 2026 – present · London</p>
-    <p>Elected to lead the society's 2026/27 project programme, setting academic direction across data science, machine learning and quantitative analytics, and running the project teams from scoping through to final presentation. The programme starts this term.</p>
-    <h3>Maths Teaching Assistant · Lumi Summer School</h3>
-    <p class="when">Jul 2025</p>
-    <p>Marked assignments and exam papers, taught TMUA and MAT past papers, and ran Oxbridge-style mock interviews.</p>
-    <h3>Finance and Strategy Mentor · FRC Team 6399</h3>
-    <p class="when">Aug 2025 – Mar 2026 · remote</p>
-    <p>Managed the team's competition budget and expense records across two competitions, in Shanghai and in Turkey.</p>
-  </div></div></section>
-
   <section id="journal"><div class="sec-win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div><div class="pad">
     <h2>Journal</h2>
     <p class="kicker">Fragments I decided not to leave buried in Notes. Open only the one that catches.</p>
     <!-- JOURNAL_GALLERY_START -->
-    <div class="journal-gallery" data-entry-count="4">
+    <div class="journal-gallery" data-entry-count="5">
       <details class="journal-card" id="journal-entry-1">
+        <summary>
+          <span class="journal-date">2026年8月11日</span>
+          <h3>26summer的一半一半</h3>
+          <span class="journal-deck">早早过上了养生生活。</span>
+          <span class="journal-read" aria-hidden="true"></span>
+        </summary>
+        <div class="journal-body">
+          <p>半个月前，我让codex给我的obsidian装了个视图，可以直观展露我在哪一天写了日记。上周忙着给新科研选题，所有空闲时间都拿来看文献和写paper了，我的日记视图上暗了一片。昨天脑袋一热就把从高中萌生的个人网站想法实现了，由衷感谢各种agent，能够把我一年前不敢想的想法变成了现实。今天在obsidian里挑选把哪些放进journal，点开了四月底给自己写的19岁贺词，看完眼睛鼻头都酸酸的，我始终觉得在英国和在中国的，是两个我。</p>
+          <p>时间好快，我快4个月没有写阶段性总结了，我也不解我6月怎么没留下year1反思呢，大抵是那个时候没什么烦恼。我的大部分灵感，都是在试图把自己闷进泥潭的阶段迸发的。相比快活没烦恼的日子，我更愿意成为苦行僧，倒不是闲着无聊自寻苦难，更像是一种长期主义，追求情绪上的情绪稳定，当然，我不愿意我的生活一成不变，这会给我一种白来一遭的错觉。这段日子我慢慢发现了一个隐藏很久的特质，我讨厌一切突如而来的情绪波动，哪怕因为一些阶段性的爱好，使得获取了短暂的充实感，可是一切都是转瞬即逝的，我不会热爱某事一辈子，这终究会打破情绪上的平衡。我又矛盾了起来，我长久以来把自己定义为一个自由、不守方圆、尝试新事物的个体，可是我为什么那么恐惧和排斥那些打破我心态的意外呢，或许是我拿了太多换取了如今内心的平静，也或许是心底里一直渴望的安全感，但这都是内心戏了，相信对于这个美好的世界而言，我算不得上是个守旧的人。</p>
+          <p>其实又花了很长时间去适应如今的生活节奏。回国前的那个周末，我从kingscross的bar逃出来，在街上大唱show u off，六月中旬重新踏回山东这片土地，说不清的压抑感，甚至喘不上气。被制约的工作时间、紧绷的办公室氛围、不得不妥协的人情世故，使得我时常怀疑自己像只金丝雀，但同时又在默默给自己洗脑，用了好久才将这一切全盘接受。我倒不是在抨击公司的vibe，我尊重倾佩我的同事和领导们，只是想表达，我终于设身处地理解了所谓的文化冲击。小时候对看世界没有概念，只觉得去不同国家品尝美食很酷，现在愈发觉得世界之大困不住小小的我，的确在某种程度上冲淡了烦恼，同时也放大了我的野心。自记事开始，我要的就不是安稳和平庸的人生，哪怕到最后竹篮打水一场空，我也想不死心的碰碰硬。我拿过第一，也得过倒数第一，春风得意过，也销魂落魄过，所以我格外讨厌标签化，也逐渐学会了不戴着有色眼镜，波峰和波谷同样都很酷。</p>
+          <p>七月我在看野狗骨头，一部情感浓度太高的剧，很多深夜我都是在被动容的眼泪中度过的，有一条微博文案是这样的，‘如果有人能读懂我，我也会愣在原地。’ 我不止一次公开分享过这个文案了，可命运好像在眷顾我。最近几天和认识很久的朋友，久违来了deeptalk，意外发现没怎么联系的两年里，我们如今的兴趣和态度竟是那么相似；和mentor高频率的交流，切实感受到我被看见了，被读懂时比欣喜先到来的是幸福的泪水；甚至旧友之间偶尔互动的几句话，也能掀起我内心的波澜。初中的时候，每年学期末，班主任都会要求我们给同学们写优点单，后知后觉了他的用心良苦。人和情感的存在本身就很珍贵了，我的朋友们教会了我不羞于表达自己的情感；也教会了我以乐观和稳定的态度面对生活；更让我看到了强女身上的不畏和坚定。我还是忘不了我mentor说的，在面对世界时产生的不喜情绪，都是对自我的伤害，更必要的是拍拍灰尘让自己变强。在构建我的网站时，我曾思考过要不要写几个形容词在about me这个界面，这确实会让我的形象更立体，但同时又会把我深深地局限住，我已经过了那个拼命探索自己的年龄段，相比于那些框框架架，我更情愿放上几位强大的新时代女性剪影，像一杯越品越香的葡萄酒。</p>
+          <p>七月上旬，我把暴露在大众视野9年的抖音关掉了。24年的时候，我还跟那时的朋友说，‘我好期待开学啊，我受不了一个人呆着。’ 而在26年，我最喜欢的就是在傍晚，拖着疲惫的大脑，戴上降噪耳机站在跑步机上，没有什么比独处时光更完美的了。我开始不爱回消息，也很少主动发开启话题的消息，几个社媒都没了声音，像我网站里的那一句，hide in the light. 可还是有个奇怪的现象，所有刚认识我的人都会把我定义成extroverted，我希望我是‘松弛有度’的，对于这个外界的评价，更情愿说这是我不得不的社交手段。小时候很喜欢学历史，所以我痴迷于阅读，可长大后，迫于升学压力，我丢弃了一个又一个爱好，如今我在试图慢慢捡回来。吃完午饭、睡觉前、周末的空档，我都默默把手机换成了纸质书本，表达和沟通是困住我太久的枷锁，但既然想在这个世界上过好，就要咬咬牙‘破局’。长久以来，我的睡眠都算不得好，鲁豫的声音陪伴了我太多个夜晚，耳机里的kpop被逐渐换成podcast，刷短视频的时间开始被访谈占满，我好奇不同的人生经历，所以我现在很羡慕演员，有机会尝试那么多不一样的人生。扔掉了冰美式，抛弃了奶茶果茶，外卖软件很少打开，我慢慢过上了我妈期望我拥有的养生生活，健康太太太重要了，希望所有人都可以少受病痛折磨。</p>
+          <p>好巧吧怎么随机切到the way i still love u, 我不避讳提及情感话题，可值得我花时间经历去对待的那个‘他’就是没有出现，大概是我太自私了，除了爸爸妈妈、敬重的长辈老师、亲近的好朋友，没有人能让我主动停下来。我很喜欢如今这种没有挂念人的状态，会少一点动力，但不可否认的是更自在，更没心没肺，更敢于尝试的生活态度。</p>
+          <p>前段时间见到了我初中最敬爱的老师，被熟悉的活宝们逗着捧腹大笑的瞬间，我真的像是短暂穿回了初中，那是心底里最柔软的一部分，被汗水浸湿的球场、布满灰尘的玄龄书院、写满爱豆名字的储物柜，我原本的恐慌和焦虑全部烟消云散，遇到了一群很好的人，这让我试图也去变成一个很好的人。</p>
+          <p>其实很讨厌在日记里写什么我的成就，很尴尬也很压力大，这段时间确实很忙，会丧失一些思考的机会。过去一年里，我试图探索了很多领域，但始终找不到我真的热爱的那条，开始问自己，我想对人类社会做出什么贡献，甚至是我希望被人们记住的是什么，挣扎了很久还是没有找到答案。总是在习惯自发做点什么来延迟做选择，本科来读数学，再把时间线拉到硕博，我好像都蛮喜欢的，但同时也没那么喜欢。目前为止我人生里最热爱的是什么，可能是独自思考学数学、接触一个全新的领域、以及最俗的物质条件，所以我由衷佩服已经找到未来方向的同龄人们。</p>
+          <p>我大概会把这些挂在网站上，很久以来都想做一个blog，有一个窗口更好地去跟形形色色的人交流。感激能有人肯花时间看我的journal，我很期待和大家的灵魂碰撞，睡个好觉。</p>
+          <p>上周的某天，晚上九点多，结束了公司的饭局，我踱步到了家楼下的健身器材旁，只有在喘不过气的时候，才会选择到那里去寻得一片安宁，上一次记得还是去年2月。</p>
+          <p>头连续疼了好多天，半夜又会突然控制不住情绪，各种声音在脑子里斗争，唯一不同的是我身后缺少的若即若离的安全感在趋于稳定。焦虑的源头不再是单纯的，没成年时对自己能力的否定、对外围世界的恐惧、对未来的迷茫，我不否认这些依然存在，很严重的peer pressure和年龄焦虑一直笼罩着我；但如今更让我无所适从的，是发现我没有高效的时间管理能力，几件事发生冲突时我会无法handle，过去经常认为自己没有拖延症而洋洋自得，而如今看来想当初只是太闲。也不算毫无收获吧，可还是觉得知识分散在各处，我真的得到的只有表面细碎的奶皮子，醇香的牛奶对我来说还是太过于遥远。我对所谓的酒桌文化没有那么排斥，反而很乐意和年长我很多的叔叔阿姨们聊天，我很清楚所谓的道理听懂了不是真的懂了，人生还有很长，有的是时间去哭去笑去撞南墙，可每次聊完总会内心更踏实了一点，更有了勇气。所以我很感恩所有忽略我年龄，肯愿意跟我讲故事、和我谈心的长辈们，希望在我50岁的时候，也愿意花时间和20岁初出茅庐的小姑娘聊聊天。</p>
+          <p>最近经常戴着耳机坐在窗边，观察着一草一木，或者干脆什么也不做，只在安静的环境里发呆。学着怎么处理无聊，但真实场景下我不会给自己无聊的余地，要做的、想做的、还没做的太多了，我有个list列了很多想学的东西，但真的写了很久却没有动工。我学东西很慢，经常一些新的定义我要画上很多时间，最后得到的输出也会不尽如意，在很长的一段时间里我不清楚什么才是正常的节奏，一直算不得上是聪明小孩，上个月看heesun的qna，有句话印象深刻：‘我不自信于我的天赋，但我自信于我的勤奋。’ 在需要休息的时间里，我尤其喜欢看一些vlog，想从中寻找适合我的生活节奏，我想要的很对立，即热烈且平淡。</p>
+          <p>我最亲爱的女孩子们。周末去参加了一个太优秀姐姐的婚礼，身上是无法被模仿的、长久以来浸泡在知识里的气质。所谓的“宁缺毋滥”，是要站得高一点，再高一点。四十多岁未婚未育的mt1，向我展示的是完全强女力量：财富自由的人生、足够充盈的内心、几十年来能够坚持自己热爱的事业。算得上我半个师姐的mt2，主动把会造成“生理不适”的数据标注活揽下，每天中午活蹦乱跳和我吃食堂聊八卦，积极给我布置学习任务。写不出来的paper，在懊恼于无法平衡工作学业生活时，及时拉了我一把的学姐，“慢一点也没关系的。”买化妆品，店员小姐姐送我的七夕花束，我妈：“啥时候送你七夕礼物的不是我了。”总是活人感很强的好朋友们，永远向外展示小太阳的一面。腹有诗书气自华的阿姨们，拉着我讲故事，谈天说地。楼下几岁就会对我说谢谢的小女生。女孩子们很美好，顶天立地，让我心里暖暖的。</p>
+        </div>
+      </details>
+
+      <details class="journal-card" id="journal-entry-2">
         <summary>
           <span class="journal-date">2026年4月29日</span>
           <h3>19岁生日反思</h3>
@@ -637,7 +588,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
         </div>
       </details>
 
-      <details class="journal-card" id="journal-entry-2">
+      <details class="journal-card" id="journal-entry-3">
         <summary>
           <span class="journal-date">2025年12月</span>
           <h3>2025总结</h3>
@@ -659,7 +610,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
         </div>
       </details>
 
-      <details class="journal-card" id="journal-entry-3">
+      <details class="journal-card" id="journal-entry-4">
         <summary>
           <span class="journal-date">2025年7月15日</span>
           <h3>LUMI2025 小作文</h3>
@@ -678,7 +629,7 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
         </div>
       </details>
 
-      <details class="journal-card" id="journal-entry-4">
+      <details class="journal-card" id="journal-entry-5">
         <summary>
           <span class="journal-date">2025年5月</span>
           <h3>在叽歪国际的三年</h3>
@@ -768,17 +719,10 @@ footer{max-width:900px;margin:0 auto;padding:0 24px 54px;color:var(--ink-3);font
     <div class="flow-nav"><button data-prev="screen" aria-label="Previous">&#8249;</button><button data-next="screen" aria-label="Next">&#8250;</button><span class="flow-idx" id="screen-idx"></span><span class="flow-hint">drag or click</span></div>
 
     <h3>Reading</h3>
-    <div class="flow" id="books" data-flow>
-        <article class="cf" data-cat="Book" style="background:#8A6B3E"><span class="cf-cat">Book</span><h5>My Brilliant Friend</h5><small>Elena Ferrante</small></article>
-        <article class="cf" data-cat="Book" style="background:#4A6B52"><span class="cf-cat">Book</span><h5>Strait Is the Gate</h5><small>André Gide</small></article>
-        <article class="cf" data-cat="Book" style="background:#7A3E52"><span class="cf-cat">Book</span><h5>Siddhartha</h5><small>Hermann Hesse</small></article>
-        <article class="cf" data-cat="Book" style="background:#5A4E8A"><span class="cf-cat">Book</span><h5>房思琪的初恋乐园</h5><small>林奕含</small></article>
-        <article class="cf" data-cat="Book" style="background:#8A3E6B"><span class="cf-cat">Book</span><h5>Thinking, Fast and Slow</h5><small>Daniel Kahneman</small></article>
-        <article class="cf" data-cat="Book" style="background:#6B4E9E"><span class="cf-cat">Book</span><h5>One Hundred Years of Solitude</h5><small>Gabriel García Márquez</small></article>
-        <article class="cf" data-cat="Book" style="background:#B5628F"><span class="cf-cat">Book</span><h5>Alchemised</h5><small>SenLinYu</small></article>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:18px 20px;border:1px solid #E6DCC6;border-radius:13px;background:var(--cream)">
+      <p style="font-size:14px;color:var(--ink-2);margin:0;max-width:58ch">Not a long list. I read slowly and return to the books that unsettled me, changed the shape of a question, or refused to leave quietly.</p>
+      <a class="more" href="library.html">Open the library →</a>
     </div>
-    <div class="flow-nav"><button data-prev="books" aria-label="Previous">&#8249;</button><button data-next="books" aria-label="Next">&#8250;</button><span class="flow-idx" id="books-idx"></span><span class="flow-hint">drag or click</span></div>
-    <p style="font-size:14px;color:var(--ink-2)">Not a long list. I read slowly and reread the ones that unsettled me.</p>
 
     <h3>Places</h3>
     <div class="counts">

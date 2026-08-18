@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research · Huiru Feng (冯绘如)</title>
+<meta name="description" content="Research in progress by Huiru Feng (冯绘如): robust hierarchical segmentation and fallacy detection in UK parliamentary debate.">
+<link rel="canonical" href="https://sofhrina.com/research.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Research · Huiru Feng (冯绘如)">
+<meta property="og:description" content="Questions, methods, contributions, and honest work-in-progress notes.">
+<meta property="og:url" content="https://sofhrina.com/research.html">
+<meta property="og:image" content="https://sofhrina.com/og-card.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="interior.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="home-name mono" href="index.html">Huiru Feng · Sofhrina</a>
+  <nav class="mono" aria-label="Site pages"><a href="index.html">Desk</a><a href="about.html">About</a><a href="research.html" aria-current="page">Research</a><a href="projects.html">Projects</a><a href="experience.html">Career</a><a href="academic.html">Academic</a><a href="journal.html">Journal</a><details class="nav-more"><summary>More</summary><div class="nav-more-menu"><a href="library.html">Library</a><a href="rest.html">The Rest of Me</a><a href="guestbook.html">Guestbook</a></div></details></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow mono">research.notes · work in progress</p>
+    <h1>Questions before conclusions.</h1>
+    <p class="lede">Two projects in progress, written with their uncertainty left visible. Drafts are available on request.</p>
+  </div>
+</section>
+<main class="paper">
+  <div class="windowbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>research-in-progress.txt</span></div>
+  <div class="content">
+    <p class="page-intro">This page records the question, the method, and my part in the work. Results appear only when they exist.</p>
+    <section class="work-list" aria-label="Research projects">
+      <article class="work-item">
+        <div><p class="work-meta">Jul 2026 – present<br>with a PhD mentor</p><h2>Robust factor decomposition for hierarchical consumer segmentation</h2></div>
+        <div class="work-copy"><p>Standard k-means treats each feature as equally informative and returns one flat partition. That is a poor fit for high-dimensional consumer data, where correlated variables can be counted repeatedly and segments may be nested.</p><p>I am developing a pipeline that learns factor weights from the data, combines a robust loss with L1 regularisation, and performs two-level clustering. I wrote the abstract, introduction and methodology, and am now turning the mathematical specification into reproducible experiments.</p><div class="work-facts"><div><b>Question</b>Can a robust, weighted factor model recover interpretable nested segments?</div><div><b>My part</b>Problem framing, methodology, mathematical writing and experiment design.</div><div><b>Now</b>Methodology drafted; implementation and evaluation pending.</div></div></div>
+      </article>
+      <article class="work-item">
+        <div><p class="work-meta">Apr 2026 – present<br>with a PhD researcher at UCL</p><h2>Fallacy detection in UK parliamentary debate</h2></div>
+        <div class="work-copy"><p>This argument-mining project asks how fallacious reasoning can be represented and detected in parliamentary questioning. The scope narrowed from multimodal material to a text-based dataset so that annotation decisions could be made consistently and audited.</p><p>I proposed the UK parliamentary setting, helped define a workable fallacy label set, and am building the annotated dataset with argumentation-framework structures and IAT-style graphs. The PhD researcher leads the paper; I contribute to dataset design, annotation and analysis.</p><div class="work-facts"><div><b>Output</b>A structured parliamentary fallacy dataset and accompanying analysis.</div><div><b>My part</b>Setting selection, label design, annotation protocol and dataset construction.</div><div><b>Target</b>Manuscript in preparation, targeting submission to a leading UK conference.</div></div></div>
+      </article>
+    </section>
+    <div class="next-room"><a href="about.html">← About</a><a href="projects.html">Projects →</a></div>
+  </div>
+</main>
+<footer class="footer"><span>© Huiru Feng · 冯绘如</span><span><a href="index.html">Back to the desk</a> · <a href="mailto:hi@sofhrina.com">Email</a></span></footer>
+</body>
+</html>

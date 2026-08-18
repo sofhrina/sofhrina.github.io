@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projects · Huiru Feng (冯绘如)</title>
+<meta name="description" content="Selected projects by Huiru Feng (冯绘如) across algorithms, quantitative research, valuation, and product work.">
+<link rel="canonical" href="https://sofhrina.com/projects.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projects · Huiru Feng (冯绘如)">
+<meta property="og:description" content="Selected work, including one project being taken apart and rebuilt.">
+<meta property="og:url" content="https://sofhrina.com/projects.html">
+<meta property="og:image" content="https://sofhrina.com/og-card.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="interior.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="home-name mono" href="index.html">Huiru Feng · Sofhrina</a>
+  <nav class="mono" aria-label="Site pages"><a href="index.html">Desk</a><a href="about.html">About</a><a href="research.html">Research</a><a href="projects.html" aria-current="page">Projects</a><a href="experience.html">Career</a><a href="academic.html">Academic</a><a href="journal.html">Journal</a><details class="nav-more"><summary>More</summary><div class="nav-more-menu"><a href="library.html">Library</a><a href="rest.html">The Rest of Me</a><a href="guestbook.html">Guestbook</a></div></details></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow mono">selected-work · built and rebuilt</p>
+    <h1>What survived the process.</h1>
+    <p class="lede">Not a wall of tools. A few problems, the work I contributed, and what changed after I looked again.</p>
+  </div>
+</section>
+<main class="paper">
+  <div class="windowbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>selected-projects.txt</span></div>
+  <div class="content">
+    <p class="page-intro">The technical choices are kept inside their context. Where a result is uncertain, that uncertainty stays on the page.</p>
+    <section class="work-list" aria-label="Selected projects">
+      <article class="work-item">
+        <div><p class="work-meta">May – Jun 2026<br>Python · Jupyter · Matplotlib</p><h2>Algorithms and Big-O</h2></div>
+        <div class="work-copy"><p>A first-year algorithms project combining implementation, experiment and proof. I wrote bubble sort, merge sort, quicksort and counting sort from scratch, then compared their running time across increasing input sizes.</p><p>The repository also preserves the presentation, speaker notes, visual assets and my reconstruction of the decision-tree lower bound for comparison sorting. The important lesson was learning to distinguish recognising a proof from being able to rebuild it.</p><div class="work-facts"><div><b>Built</b>Four sorting implementations and a reproducible timing notebook.</div><div><b>Explained</b>O(n²), O(n log n), O(n+k), and the Ω(n log n) lower bound.</div><div><b>Evidence</b>Code, slides, notes and final assets are public.</div></div><p><a class="work-link" href="https://github.com/sofhrina/algorithm-bigo-project">Open the Big-O repository →</a></p></div>
+      </article>
+      <article class="work-item">
+        <div><p class="work-meta">Jan – Mar 2026<br>UCL Data Science Society</p><h2>Cross-sectional alpha strategy, auto sector</h2></div>
+        <div class="work-copy"><p>A ranking pipeline over nine global automotive equities using momentum, volatility and RSI factors, a depth-constrained Random Forest, and Spearman rank IC.</p><p>The original Sharpe ratio is implausibly high, so I am rebuilding the pipeline before presenting it as a result. The audit focuses on look-ahead bias, transaction costs, split construction and whether every feature is available at decision time.</p><div class="work-facts"><div><b>Universe</b>Nine global automotive equities.</div><div><b>Method</b>Factor ranking, Random Forest and rank IC.</div><div><b>Status</b>Rebuilding and validating; no performance claim yet.</div></div><p><a class="work-link" href="https://github.com/sofhrina/auto_stock_strategy">GitHub repository →</a></p></div>
+      </article>
+      <article class="work-item">
+        <div><p class="work-meta">Feb – Mar 2026<br>UCL · Cambridge · LSE · Imperial</p><h2>Strategic M&amp;A valuation</h2></div>
+        <div class="work-copy"><p>Our cross-university team acted for Samsung Electronics, selected Lattice Semiconductor as a potential acquisition target, and built the strategic and financial case.</p><p>I led the quantitative work: a five-year forecast, CAPM-based WACC, DCF, comparable-company analysis and sensitivity ranges. The methods disagreed, so the final task was not forcing convergence but explaining what each method assumed.</p><div class="work-facts"><div><b>Role</b>Lead on valuation and quantitative modelling.</div><div><b>Methods</b>DCF, trading comps, WACC and sensitivity analysis.</div><div><b>Lesson</b>A valuation range is an argument, not a single correct cell.</div></div></div>
+      </article>
+      <article class="work-item">
+        <div><p class="work-meta">Apr 2026<br>seven-person cross-university team</p><h2>AI wearable concept</h2></div>
+        <div class="work-copy"><p>A companion wearable concept for detecting patterns associated with anxiety in university students. I handled market sizing, competitor mapping, product gaps and the route to the intended users.</p><p>The project forced a distinction between what a sensor might measure, what a model might infer and what a product should be allowed to claim. That uncertainty became part of the proposal rather than something to hide.</p><div class="work-facts"><div><b>My part</b>Market sizing, competitor analysis and go-to-market logic.</div><div><b>Constraint</b>Avoiding medical claims beyond the evidence.</div><div><b>Outcome</b>A scoped concept and cross-university team presentation.</div></div></div>
+      </article>
+    </section>
+    <div class="next-room"><a href="research.html">← Research</a><a href="experience.html">Experience →</a></div>
+  </div>
+</main>
+<footer class="footer"><span>© Huiru Feng · 冯绘如</span><span><a href="index.html">Back to the desk</a> · <a href="mailto:hi@sofhrina.com">Email</a></span></footer>
+</body>
+</html>

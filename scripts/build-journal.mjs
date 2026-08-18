@@ -115,6 +115,7 @@ export function buildJournal() {
   const entries = fs.readdirSync(entriesDir)
     .filter(file => file.endsWith('.md'))
     .map(parseEntry)
+    .filter(entry => entry.draft !== 'true')
     .sort((a, b) => b.date.localeCompare(a.date));
   if (!entries.length) throw new Error('Journal needs at least one entry');
 

@@ -5,6 +5,9 @@ const requiredFiles = [
   '.nojekyll',
   'index.html',
   'about.html',
+  'research.html',
+  'projects.html',
+  'experience.html',
   'library.html',
   'interior.css',
   'assets/about/nancy-wheeler.jpg',
@@ -30,7 +33,8 @@ for (const file of requiredFiles) {
 }
 
 const journalEntries = fs.readdirSync('journal/entries')
-  .filter(file => file.endsWith('.md'));
+  .filter(file => file.endsWith('.md'))
+  .filter(file => !/^draft:\s*true\s*$/m.test(fs.readFileSync(path.join('journal/entries', file), 'utf8')));
 if (!journalEntries.length) throw new Error('Journal needs at least one Markdown entry');
 
 const indexHtml = fs.readFileSync('index.html', 'utf8');
@@ -45,7 +49,7 @@ for (const seoMarker of [
   if (!indexHtml.includes(seoMarker)) throw new Error(`index.html is missing SEO marker ${seoMarker}`);
 }
 
-for (const page of ['about.html', 'library.html']) {
+for (const page of ['about.html', 'research.html', 'projects.html', 'experience.html', 'library.html']) {
   const html = fs.readFileSync(page, 'utf8');
   if (!html.includes('<link rel="canonical"')) throw new Error(`${page} is missing its canonical URL`);
   if (!indexHtml.includes(`href="${page}"`)) throw new Error(`Homepage does not link to ${page}`);
@@ -63,7 +67,7 @@ if (!robots.includes('Sitemap: https://sofhrina.com/sitemap.xml')) {
 }
 
 const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
-for (const url of ['https://sofhrina.com/', 'https://sofhrina.com/about.html', 'https://sofhrina.com/library.html', 'https://sofhrina.com/guestbook.html']) {
+for (const url of ['https://sofhrina.com/', 'https://sofhrina.com/about.html', 'https://sofhrina.com/research.html', 'https://sofhrina.com/projects.html', 'https://sofhrina.com/experience.html', 'https://sofhrina.com/library.html', 'https://sofhrina.com/guestbook.html']) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) throw new Error(`sitemap.xml is missing ${url}`);
 }
 for (const marker of [
@@ -85,7 +89,7 @@ for (const file of journalEntries) {
   if (!indexHtml.includes(value)) throw new Error(`${file} has not been built into index.html`);
 }
 
-for (const file of ['index.html', 'about.html', 'library.html', 'guestbook.html', 'cloudflare/guestbook-admin/public/index.html']) {
+for (const file of ['index.html', 'about.html', 'research.html', 'projects.html', 'experience.html', 'library.html', 'guestbook.html', 'cloudflare/guestbook-admin/public/index.html']) {
   const html = fs.readFileSync(file, 'utf8');
   if (!html.includes('<!DOCTYPE html>')) throw new Error(`${file} is not an HTML document`);
 }

@@ -7,6 +7,10 @@ const requiredFiles = [
   'about.html',
   'library.html',
   'interior.css',
+  'assets/about/nancy-wheeler.jpg',
+  'assets/about/jodie-foster.jpg',
+  'assets/about/miao-jing.jpg',
+  'assets/about/kang-mo-yeon.jpg',
   'robots.txt',
   'sitemap.xml',
   'guestbook.html',
@@ -46,6 +50,11 @@ for (const page of ['about.html', 'library.html']) {
   if (!html.includes('<link rel="canonical"')) throw new Error(`${page} is missing its canonical URL`);
   if (!indexHtml.includes(`href="${page}"`)) throw new Error(`Homepage does not link to ${page}`);
   if (!html.includes('href="index.html"')) throw new Error(`${page} does not link back to the homepage`);
+}
+
+const aboutHtml = fs.readFileSync('about.html', 'utf8');
+for (const person of ['Nancy Wheeler', 'Clarice Starling', '苗靖', '姜暮烟']) {
+  if (!aboutHtml.includes(person)) throw new Error(`about.html is missing ${person}`);
 }
 
 const robots = fs.readFileSync('robots.txt', 'utf8');

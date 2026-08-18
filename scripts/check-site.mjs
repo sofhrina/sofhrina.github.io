@@ -8,8 +8,12 @@ const requiredFiles = [
   'research.html',
   'projects.html',
   'experience.html',
+  'academic.html',
+  'journal.html',
+  'rest.html',
   'library.html',
   'interior.css',
+  'assets/ui/hp-cursor.png',
   'assets/about/nancy-wheeler.jpg',
   'assets/about/jodie-foster.jpg',
   'assets/about/miao-jing.jpg',
@@ -49,10 +53,9 @@ for (const seoMarker of [
   if (!indexHtml.includes(seoMarker)) throw new Error(`index.html is missing SEO marker ${seoMarker}`);
 }
 
-for (const page of ['about.html', 'research.html', 'projects.html', 'experience.html', 'library.html']) {
+for (const page of ['about.html', 'research.html', 'projects.html', 'experience.html', 'academic.html', 'journal.html', 'rest.html', 'library.html']) {
   const html = fs.readFileSync(page, 'utf8');
   if (!html.includes('<link rel="canonical"')) throw new Error(`${page} is missing its canonical URL`);
-  if (!indexHtml.includes(`href="${page}"`)) throw new Error(`Homepage does not link to ${page}`);
   if (!html.includes('href="index.html"')) throw new Error(`${page} does not link back to the homepage`);
 }
 
@@ -67,18 +70,14 @@ if (!robots.includes('Sitemap: https://sofhrina.com/sitemap.xml')) {
 }
 
 const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
-for (const url of ['https://sofhrina.com/', 'https://sofhrina.com/about.html', 'https://sofhrina.com/research.html', 'https://sofhrina.com/projects.html', 'https://sofhrina.com/experience.html', 'https://sofhrina.com/library.html', 'https://sofhrina.com/guestbook.html']) {
+for (const url of ['https://sofhrina.com/', 'https://sofhrina.com/about.html', 'https://sofhrina.com/research.html', 'https://sofhrina.com/projects.html', 'https://sofhrina.com/experience.html', 'https://sofhrina.com/academic.html', 'https://sofhrina.com/journal.html', 'https://sofhrina.com/rest.html', 'https://sofhrina.com/library.html', 'https://sofhrina.com/guestbook.html']) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) throw new Error(`sitemap.xml is missing ${url}`);
 }
-for (const marker of [
-  'JOURNAL_PREVIEW_START',
-  'JOURNAL_PREVIEW_END',
-  'JOURNAL_GALLERY_START',
-  'JOURNAL_GALLERY_END'
-]) {
-  if (!indexHtml.includes(`<!-- ${marker} -->`)) throw new Error(`index.html is missing ${marker}`);
+const journalHtml = fs.readFileSync('journal.html', 'utf8');
+for (const marker of ['JOURNAL_GALLERY_START', 'JOURNAL_GALLERY_END']) {
+  if (!journalHtml.includes(`<!-- ${marker} -->`)) throw new Error(`journal.html is missing ${marker}`);
 }
-if (!indexHtml.includes(`data-entry-count="${journalEntries.length}"`)) {
+if (!journalHtml.includes(`data-entry-count="${journalEntries.length}"`)) {
   throw new Error('Journal gallery is out of date; run npm run journal:build');
 }
 for (const file of journalEntries) {
@@ -86,10 +85,10 @@ for (const file of journalEntries) {
   const title = source.match(/^title:\s*(?:"([^"]+)"|'([^']+)'|(.+))$/m);
   if (!title) throw new Error(`${file} is missing a title`);
   const value = title[1] || title[2] || title[3].trim();
-  if (!indexHtml.includes(value)) throw new Error(`${file} has not been built into index.html`);
+  if (!journalHtml.includes(value)) throw new Error(`${file} has not been built into journal.html`);
 }
 
-for (const file of ['index.html', 'about.html', 'research.html', 'projects.html', 'experience.html', 'library.html', 'guestbook.html', 'cloudflare/guestbook-admin/public/index.html']) {
+for (const file of ['index.html', 'about.html', 'research.html', 'projects.html', 'experience.html', 'academic.html', 'journal.html', 'rest.html', 'library.html', 'guestbook.html', 'cloudflare/guestbook-admin/public/index.html']) {
   const html = fs.readFileSync(file, 'utf8');
   if (!html.includes('<!DOCTYPE html>')) throw new Error(`${file} is not an HTML document`);
 }

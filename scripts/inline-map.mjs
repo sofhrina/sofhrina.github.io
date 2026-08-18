@@ -71,10 +71,10 @@ for (const [name, latitude, longitude] of regions) {
 }
 
 const svg = `<svg id="worldmap" viewBox="0 0 900 460" role="img" aria-label="World map of places visited">${shapes}</svg>`;
-const indexUrl = new URL('index.html', root);
-const html = fs.readFileSync(indexUrl, 'utf8');
+const restUrl = new URL('rest.html', root);
+const html = fs.readFileSync(restUrl, 'utf8');
 const pattern = /<svg id="worldmap" viewBox="0 0 900 460" role="img" aria-label="World map of places visited">[\s\S]*?<\/svg>/;
 
 if (!pattern.test(html)) throw new Error('World map placeholder was not found.');
-fs.writeFileSync(indexUrl, html.replace(pattern, svg));
+fs.writeFileSync(restUrl, html.replace(pattern, svg));
 console.log(`Inlined ${geo.features.length} countries and ${regions.length} region markers.`);

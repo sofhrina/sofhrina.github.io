@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const entriesDir = path.join(root, 'journal', 'entries');
-const indexPath = path.join(root, 'index.html');
+const journalPath = path.join(root, 'journal.html');
 
 function escapeHtml(value) {
   return value
@@ -98,15 +98,9 @@ ${markdownToHtml(entry.body).split('\n').map(line => `          ${line}`).join('
     <!-- JOURNAL_GALLERY_END -->`;
 }
 
-function renderPreview(entry) {
-  return `<!-- JOURNAL_PREVIEW_START -->
-          <div class="entry"><span class="tag t2">journal</span><b>${escapeHtml(entry.title)}</b><span>${escapeHtml(entry.summary)}</span></div>
-          <!-- JOURNAL_PREVIEW_END -->`;
-}
-
 function replaceGenerated(source, name, content) {
   const expression = new RegExp(`<!-- ${name}_START -->[\\s\\S]*?<!-- ${name}_END -->`);
-  if (!expression.test(source)) throw new Error(`index.html is missing ${name} markers`);
+  if (!expression.test(source)) throw new Error(`journal.html is missing ${name} markers`);
   return source.replace(expression, content);
 }
 
@@ -119,11 +113,10 @@ export function buildJournal() {
     .sort((a, b) => b.date.localeCompare(a.date));
   if (!entries.length) throw new Error('Journal needs at least one entry');
 
-  let index = fs.readFileSync(indexPath, 'utf8');
-  index = replaceGenerated(index, 'JOURNAL_PREVIEW', renderPreview(entries[0]));
-  index = replaceGenerated(index, 'JOURNAL_GALLERY', renderGallery(entries));
-  fs.writeFileSync(indexPath, index);
-  console.log(`Built ${entries.length} journal entries into index.html.`);
+  let journal = fs.readFileSync(journalPath, 'utf8');
+  journal = replaceGenerated(journal, 'JOURNAL_GALLERY', renderGallery(entries));
+  fs.writeFileSync(journalPath, journal);
+  console.log(`Built ${entries.length} journal entries into journal.html.`);
 }
 
 if (path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)) buildJournal();

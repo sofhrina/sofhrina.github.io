@@ -1,4 +1,4 @@
-# Design QA — Guestbook
+# Design QA · Guestbook
 
 - Source visual truth: `/var/folders/jr/xpvz47w11wx2dwk_0wnmfr2c0000gn/T/TemporaryItems/NSIRD_screencaptureui_iPJOAz/Screenshot 2026-08-10 at 22.17.51.png`
 - Browser-rendered implementation: `/private/tmp/sofhrina-guestbook-desktop.png`

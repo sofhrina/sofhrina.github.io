@@ -76,26 +76,25 @@ a{color:inherit}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-/* ---------- marauder rail : parchment section tabs ---------- */
-.maprail{position:fixed;z-index:70;font-family:"IBM Plex Mono",monospace;display:none}
-.maprail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
-.mtab{position:relative;display:flex;align-items:center;gap:7px;text-decoration:none;color:#6B5638;font-size:9px;letter-spacing:.11em;text-transform:uppercase;padding:9px 10px;border:1px solid #CBB98E;border-radius:9px;background:linear-gradient(178deg,#F3E7CB,#E6D5AE);background-blend-mode:multiply;box-shadow:0 2px 5px rgba(62,44,14,.18);transition:color .22s ease,transform .26s var(--spring),box-shadow .22s ease}
-.mtab::before{content:"";position:absolute;inset:0;border-radius:8px;pointer-events:none;opacity:.5;background:repeating-linear-gradient(64deg,rgba(120,94,52,.13) 0 1px,transparent 1px 9px),repeating-linear-gradient(-19deg,rgba(120,94,52,.09) 0 1px,transparent 1px 15px)}
-.mtab:hover{color:#3B2D16;transform:translateX(4px);box-shadow:0 5px 13px rgba(62,44,14,.3)}
-.mtab[aria-current="page"]{color:#2C2110;background:linear-gradient(178deg,#FAF2DC,#EFE1BD);box-shadow:0 5px 15px rgba(62,44,14,.32)}
-.mtab .step{flex:none;width:11px;height:13px;opacity:0;transition:opacity .3s ease}
-.mtab .step path{fill:#4A3A1C}
-.mtab[aria-current="page"] .step{opacity:1;animation:walk 1.9s steps(1,end) infinite}
-.mtab[aria-current="page"] .step.b{animation-delay:.95s}
-@keyframes walk{0%,49%{opacity:1}50%,100%{opacity:.16}}
-@media(prefers-reduced-motion:reduce){.mtab{transition:none}.mtab:hover{transform:none}.mtab[aria-current="page"] .step{animation:none}}
-@media(min-width:1500px){.maprail{display:block;left:max(10px,calc(50vw - 952px));top:50%;transform:translateY(-50%)}.mtab{width:158px}}
-@media(max-width:1499px){
-  .maprail{display:block;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);max-width:calc(100vw - 24px)}
-  .maprail ol{flex-direction:row;gap:5px;padding:5px;border:1px solid #CBB98E;border-radius:13px;background:linear-gradient(178deg,#EFE2C2,#E2D0A6);box-shadow:0 8px 24px rgba(40,24,60,.34);overflow-x:auto;scrollbar-width:none}
-  .maprail ol::-webkit-scrollbar{display:none}
-  .mtab{white-space:nowrap;box-shadow:none}.mtab:hover{transform:none}
-}
+/* ---------- the dock : one parchment strip, same at every width ---------- */
+.maprail{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:70;
+  max-width:calc(100vw - 22px);font-family:"IBM Plex Mono",monospace}
+.maprail ol{list-style:none;margin:0;padding:6px;display:flex;gap:4px;
+  border:1px solid #C4AC7E;border-radius:13px;
+  background:linear-gradient(178deg,#F1E5C9,#DFCFA6);
+  box-shadow:0 14px 32px rgba(30,10,60,.4),0 1px 0 rgba(255,250,236,.75) inset;
+  overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.maprail ol::-webkit-scrollbar{display:none}
+.mtab{position:relative;display:block;white-space:nowrap;text-decoration:none;
+  color:#6B5638;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  padding:9px 13px;border-radius:8px;transition:color .2s ease,background .2s ease}
+.mtab::before{content:"";position:absolute;inset:0;border-radius:8px;pointer-events:none;opacity:.4;
+  background:repeating-linear-gradient(64deg,rgba(120,94,52,.13) 0 1px,transparent 1px 9px)}
+.mtab:hover{color:#3B2D16;background:rgba(255,251,238,.72)}
+.mtab[aria-current="page"]{color:#2C2110;background:#FCF6E6;
+  box-shadow:0 2px 6px rgba(62,44,14,.26),0 0 0 1px rgba(140,116,74,.4)}
+@media(prefers-reduced-motion:reduce){.mtab{transition:none}}
+
 .screen{position:relative;background:linear-gradient(152deg,var(--violet-1) 0%,var(--violet-2) 40%,var(--violet-3) 76%,var(--violet-deep) 100%);overflow:hidden;padding-bottom:26px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 
 .stage{width:100%;max-width:1560px;margin:0 auto;padding:20px 26px;display:grid;grid-template-columns:1fr 1.34fr 1fr;gap:26px;align-items:start}
@@ -232,7 +231,6 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
   .catsay{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-@media(max-width:1499px){.screen{padding-bottom:calc(84px + env(safe-area-inset-bottom))}}
 
 /* whole-card links, and a rail with enough presence to read as one object */
 .win{position:relative}
@@ -241,10 +239,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 .win .pad a,.win .pad button,.win .bar{pointer-events:auto}
 .win .pad a{position:relative;z-index:3}
 .win:hover .more{color:#4E2A7A;text-decoration:underline;text-underline-offset:3px}
-.maprail ol{gap:6px;padding:13px 11px;border:1px solid #C4AC7E;border-radius:12px;
   background:linear-gradient(178deg,#EFE3C6,#DFCFA6);box-shadow:0 16px 34px rgba(30,10,60,.34),0 1px 0 rgba(255,250,236,.7) inset}
-.mtab{gap:9px;padding:12px 13px;font-size:11px;letter-spacing:.13em;border-radius:7px}
-.mtab .step{width:13px;height:15px}
 
 /* the three window dots hand out a small blessing */
 .bar .dot{cursor:pointer;transition:transform .18s var(--spring)}
@@ -320,22 +315,23 @@ body.mischief .marauders{opacity:1;visibility:visible;transform:translate(-50%,-
   .mr-2{font-size:8px;letter-spacing:.18em;margin:8px 0 6px}
   .mr-3{font-size:27px}
   }
+.screen{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
 
 <nav class="maprail" aria-label="Site pages">
   <ol>
-    <li><a class="mtab" href="index.html" aria-current="page"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Desk</a></li>
-    <li><a class="mtab" href="about.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>About</a></li>
-    <li><a class="mtab" href="research.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Research</a></li>
-    <li><a class="mtab" href="projects.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Projects</a></li>
-    <li><a class="mtab" href="experience.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Career</a></li>
-    <li><a class="mtab" href="academic.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Academic</a></li>
-    <li><a class="mtab" href="journal.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Journal</a></li>
-    <li><a class="mtab" href="library.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Library</a></li>
-    <li><a class="mtab" href="rest.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>The Rest</a></li>
-    <li><a class="mtab" href="guestbook.html"><svg class="step" viewBox="0 0 11 13" aria-hidden="true"><path d="M2.4 1.1c1 0 1.7.9 1.7 2.2 0 1.5-.6 2.6-1.6 2.6S.8 4.9.8 3.4C.8 2 1.4 1.1 2.4 1.1M2.3 7c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S.9 9.9.9 8.7C.9 7.6 1.4 7 2.3 7"/><path d="M8.5 3.1c1 0 1.6.9 1.6 2.2 0 1.5-.6 2.6-1.6 2.6S7 6.9 7 5.4c0-1.4.6-2.3 1.5-2.3M8.4 9c.9 0 1.5.6 1.5 1.6 0 1.2-.5 2.3-1.4 2.3S7 11.9 7 10.7C7 9.6 7.5 9 8.4 9"/></svg>Guestbook</a></li>
+    <li><a class="mtab" href="index.html" aria-current="page">Desk</a></li>
+    <li><a class="mtab" href="about.html">About</a></li>
+    <li><a class="mtab" href="research.html">Research</a></li>
+    <li><a class="mtab" href="projects.html">Projects</a></li>
+    <li><a class="mtab" href="experience.html">Career</a></li>
+    <li><a class="mtab" href="academic.html">Academic</a></li>
+    <li><a class="mtab" href="journal.html">Journal</a></li>
+    <li><a class="mtab" href="library.html">Library</a></li>
+    <li><a class="mtab" href="rest.html">The Rest</a></li>
+    <li><a class="mtab" href="guestbook.html">Guestbook</a></li>
   </ol>
 </nav>
 

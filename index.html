@@ -76,26 +76,14 @@ a{color:inherit}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-/* ---------- the dock : one parchment strip, same at every width ---------- */
-.maprail{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:70;
-  max-width:calc(100vw - 22px);font-family:"IBM Plex Mono",monospace}
-.maprail ol{list-style:none;margin:0;padding:9px;display:flex;gap:6px;
-  border:1px solid #C4AC7E;border-radius:17px;
-  background:linear-gradient(178deg,#F1E5C9,#DFCFA6);
-  box-shadow:0 14px 32px rgba(30,10,60,.4),0 1px 0 rgba(255,250,236,.75) inset;
-  overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.maprail ol::-webkit-scrollbar{display:none}
-.mtab{position:relative;display:block;white-space:nowrap;text-decoration:none;
-  color:#6B5638;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  padding:14px 20px;border-radius:11px;transition:color .2s ease,background .2s ease}
-.mtab::before{content:"";position:absolute;inset:0;border-radius:11px;pointer-events:none;opacity:.4;
-  background:repeating-linear-gradient(64deg,rgba(120,94,52,.13) 0 1px,transparent 1px 9px)}
-.mtab:hover{color:#3B2D16;background:rgba(255,251,238,.72)}
-.mtab[aria-current="page"]{color:#2C2110;background:#FCF6E6;
-  box-shadow:0 2px 6px rgba(62,44,14,.26),0 0 0 1px rgba(140,116,74,.4)}
-@media(prefers-reduced-motion:reduce){.mtab{transition:none}}
-
-.screen{position:relative;background:linear-gradient(152deg,var(--violet-1) 0%,var(--violet-2) 40%,var(--violet-3) 76%,var(--violet-deep) 100%);overflow:hidden;padding-bottom:26px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.menubar{display:flex;justify-content:space-between;align-items:center;min-height:38px;padding:0 18px;background:rgba(46,25,78,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#F3EBFF;font-size:10px;position:sticky;top:0;z-index:60}
+.menubar .mono{color:#EBDFFA}.menubar>a{color:#F3EBFF;text-decoration:none;white-space:nowrap}
+.menubar nav{display:flex;align-items:center;gap:16px;overflow-x:auto;white-space:nowrap;margin-left:20px;scrollbar-width:none}
+.menubar nav::-webkit-scrollbar{display:none}
+.menubar nav a{color:#F3EBFF;text-decoration:none;opacity:.72;transition:opacity .2s,color .2s}
+.menubar nav a:hover,.menubar nav a[aria-current="page"]{opacity:1;color:var(--yellow)}
+@media(max-width:760px){.menubar{padding:0 12px}.menubar>a{display:none}.menubar nav{margin-left:0;gap:13px;width:100%}}
+.screen{position:relative;background:linear-gradient(152deg,var(--violet-1) 0%,var(--violet-2) 40%,var(--violet-3) 76%,var(--violet-deep) 100%);overflow:hidden;padding-bottom:30px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 
 .stage{width:100%;max-width:1560px;margin:0 auto;padding:20px 26px;display:grid;grid-template-columns:1fr 1.34fr 1fr;gap:26px;align-items:start}
 .col{display:flex;flex-direction:column}
@@ -319,25 +307,10 @@ body.mischief .marauders{opacity:1;visibility:visible;transform:translate(-50%,-
   .mr-2{font-size:8px;letter-spacing:.18em;margin:8px 0 6px}
   .mr-3{font-size:27px}
   }
-.screen{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
 
-<nav class="maprail" aria-label="Site pages">
-  <ol>
-    <li><a class="mtab" href="index.html" aria-current="page">Desk</a></li>
-    <li><a class="mtab" href="about.html">About</a></li>
-    <li><a class="mtab" href="research.html">Research</a></li>
-    <li><a class="mtab" href="projects.html">Projects</a></li>
-    <li><a class="mtab" href="experience.html">Career</a></li>
-    <li><a class="mtab" href="academic.html">Academic</a></li>
-    <li><a class="mtab" href="journal.html">Journal</a></li>
-    <li><a class="mtab" href="library.html">Library</a></li>
-    <li><a class="mtab" href="rest.html">The Rest</a></li>
-    <li><a class="mtab" href="guestbook.html">Guestbook</a></li>
-  </ol>
-</nav>
 
 
 <div class="screen">
@@ -391,6 +364,11 @@ body.mischief .marauders{opacity:1;visibility:visible;transform:translate(-50%,-
   </div>
 
   <div class="blessing" id="blessing" role="status" aria-live="polite"></div>
+
+  <div class="menubar">
+    <a class="mono" href="index.html">Huiru Feng · Sofhrina</a>
+    <nav class="mono" aria-label="Site pages"><a href="index.html" aria-current="page">Desk</a><a href="about.html">About</a><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="experience.html">Career</a><a href="academic.html">Academic</a><a href="journal.html">Journal</a><a href="library.html">Library</a><a href="rest.html">The Rest</a><a href="guestbook.html">Guestbook</a></nav>
+  </div>
 
   <div class="stage" id="desk">
 

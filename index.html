@@ -245,6 +245,25 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
   background:linear-gradient(178deg,#EFE3C6,#DFCFA6);box-shadow:0 16px 34px rgba(30,10,60,.34),0 1px 0 rgba(255,250,236,.7) inset}
 .mtab{gap:9px;padding:12px 13px;font-size:11px;letter-spacing:.13em;border-radius:7px}
 .mtab .step{width:13px;height:15px}
+
+/* the three window dots hand out a small blessing */
+.bar .dot{cursor:pointer;transition:transform .18s var(--spring)}
+.bar .dot:hover{transform:scale(1.28)}
+.blessing{position:fixed;left:50%;top:50%;z-index:90;max-width:min(430px,86vw);
+  padding:19px 24px;border-radius:4px;background:var(--cream);color:var(--ink);
+  font-family:Fraunces,Georgia,serif;font-size:19px;line-height:1.42;text-align:center;
+  box-shadow:0 26px 60px rgba(20,6,44,.44);border-left:4px solid var(--yellow);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translate(-50%,-50%) scale(.55);transform-origin:50% 50%}
+.blessing.in{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1);
+  transition:opacity .3s ease,transform .52s var(--spring)}
+.blessing.out{opacity:0;visibility:visible;transform:translate(-50%,-64%) scale(.97);
+  transition:opacity .42s ease,transform .42s ease}
+@media(prefers-reduced-motion:reduce){
+  .blessing.in,.blessing.out{transition:opacity .2s ease}
+  .blessing.in{transform:translate(-50%,-50%) scale(1)}
+  .bar .dot{transition:none}.bar .dot:hover{transform:none}
+}
 </style>
 </head>
 <body>
@@ -266,6 +285,8 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
 
 <div class="screen">
+
+  <div class="blessing" id="blessing" role="status" aria-live="polite"></div>
 
   <div class="stage" id="desk">
 
@@ -422,8 +443,10 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
           <path d="M82 18 L 85 2 L 68 13 Z" fill="#241B36"/>
           <path d="M43 17 L 42.5 8 L 51 14 Z" fill="#F5C518"/>
           <path d="M79 17 L 80 8 L 72 14 Z" fill="#F5C518"/>
-          <path d="M47 33 C 50 29, 55 29, 58 33" stroke="#F5C518" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-          <path d="M65 33 C 68 29, 73 29, 76 33" stroke="#F5C518" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="52.5" cy="32" rx="5.6" ry="4.6" fill="#F5C518"/>
+          <ellipse cx="70.5" cy="32" rx="5.6" ry="4.6" fill="#F5C518"/>
+          <ellipse class="pupil" cx="52.5" cy="32" rx="1.7" ry="3.5" fill="#241B36"/>
+          <ellipse class="pupil" cx="70.5" cy="32" rx="1.7" ry="3.5" fill="#241B36"/>
           <path d="M59 41 L 63 41 L 61 44 Z" fill="#F5C518"/>
           <path d="M56 96 a 6 6 0 0 1 12 0" fill="#3E3055"/>
         </svg>
@@ -439,5 +462,69 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
 
 
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)');
+
+  /* ---------- the cat watches the pointer ---------- */
+  var cat = document.querySelector('.cat');
+  if (cat && !reduce.matches) {
+    var pupils = [].slice.call(cat.querySelectorAll('.pupil'));
+    /* the anchor is cached because reading it on every move forces layout;
+       a dropped rAF must never be able to freeze the eyes, so no gating flag */
+    var ax = 0, ay = 0;
+    function anchor(){
+      var b = cat.getBoundingClientRect();
+      ax = b.left + b.width/2;
+      ay = b.top + b.height*0.32;
+    }
+    anchor();
+    addEventListener('resize', anchor, {passive:true});
+    addEventListener('scroll', anchor, {passive:true});
+    addEventListener('pointermove', function(e){
+      var dx = e.clientX - ax, dy = e.clientY - ay;
+      var d = Math.hypot(dx, dy) || 1;
+      var k = Math.min(1, d/220);              /* stop travelling once far away */
+      var ox = (dx/d)*2.7*k, oy = (dy/d)*1.9*k;
+      for (var i = 0; i < pupils.length; i++) {
+        pupils[i].setAttribute('transform','translate('+ox.toFixed(2)+' '+oy.toFixed(2)+')');
+      }
+    }, {passive:true});
+  }
+
+  /* ---------- a blessing for each of the three dots ---------- */
+  var WISHES = {
+    d1: 'May the work you are in the middle of quietly come good.',
+    d2: 'May every door that closed turn out to have been the wrong one.',
+    d3: 'May you arrive, and still like who you are when you do.'
+  };
+  var note = document.getElementById('blessing'), hideT, endT;
+  document.addEventListener('click', function(e){
+    var dot = e.target.closest && e.target.closest('.bar .dot');
+    if (!dot || !note) return;
+    var key = ['d1','d2','d3'].filter(function(k){ return dot.classList.contains(k); })[0];
+    if (!key) return;
+
+    clearTimeout(hideT); clearTimeout(endT);
+    note.textContent = WISHES[key];
+    note.className = 'blessing';
+
+    /* start from the dot that was clicked, then settle in the middle of the screen */
+    var r = dot.getBoundingClientRect();
+    var fromX = r.left + r.width/2 - window.innerWidth/2;
+    var fromY = r.top + r.height/2 - window.innerHeight/2;
+    note.style.transform = 'translate(calc(-50% + ' + fromX + 'px), calc(-50% + ' + fromY + 'px)) scale(.5)';
+    note.style.visibility = 'visible';
+    void note.offsetWidth;
+    note.style.transform = '';
+    note.classList.add('in');
+
+    hideT = setTimeout(function(){
+      note.classList.remove('in'); note.classList.add('out');
+      endT = setTimeout(function(){ note.className = 'blessing'; }, 460);
+    }, 3000);
+  });
+})();
+</script>
 </body>
 </html>

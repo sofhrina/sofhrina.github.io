@@ -69,8 +69,8 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;cursor:url("assets/ui/hp-cursor.png") 18 3,auto}
-a,button,summary{cursor:url("assets/ui/hp-cursor.png") 18 3,pointer}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;cursor:url("assets/ui/wand-cursor.png") 4 4,auto}
+a,button,summary{cursor:url("assets/ui/wand-cursor.png") 4 4,pointer}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 30,"WONK" 1;font-weight:500;line-height:1.05;margin:0}
 a{color:inherit}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
@@ -89,7 +89,7 @@ a{color:inherit}
 .mtab[aria-current="page"] .step.b{animation-delay:.95s}
 @keyframes walk{0%,49%{opacity:1}50%,100%{opacity:.16}}
 @media(prefers-reduced-motion:reduce){.mtab{transition:none}.mtab:hover{transform:none}.mtab[aria-current="page"] .step{animation:none}}
-@media(min-width:1500px){.maprail{display:block;left:max(12px,calc(50vw - 896px));top:50%;transform:translateY(-50%)}.mtab{width:104px}}
+@media(min-width:1500px){.maprail{display:block;left:max(10px,calc(50vw - 952px));top:50%;transform:translateY(-50%)}.mtab{width:158px}}
 @media(max-width:1499px){
   .maprail{display:block;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);max-width:calc(100vw - 24px)}
   .maprail ol{flex-direction:row;gap:5px;padding:5px;border:1px solid #CBB98E;border-radius:13px;background:linear-gradient(178deg,#EFE2C2,#E2D0A6);box-shadow:0 8px 24px rgba(40,24,60,.34);overflow-x:auto;scrollbar-width:none}
@@ -233,6 +233,18 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 @media(max-width:1499px){.screen{padding-bottom:calc(84px + env(safe-area-inset-bottom))}}
+
+/* whole-card links, and a rail with enough presence to read as one object */
+.win{position:relative}
+.cardlink{position:absolute;inset:0;z-index:1;border-radius:inherit}
+.win .pad,.win .bar{position:relative;z-index:2;pointer-events:none}
+.win .pad a,.win .pad button,.win .bar{pointer-events:auto}
+.win .pad a{position:relative;z-index:3}
+.win:hover .more{color:#4E2A7A;text-decoration:underline;text-underline-offset:3px}
+.maprail ol{gap:6px;padding:13px 11px;border:1px solid #C4AC7E;border-radius:12px;
+  background:linear-gradient(178deg,#EFE3C6,#DFCFA6);box-shadow:0 16px 34px rgba(30,10,60,.34),0 1px 0 rgba(255,250,236,.7) inset}
+.mtab{gap:9px;padding:12px 13px;font-size:11px;letter-spacing:.13em;border-radius:7px}
+.mtab .step{width:13px;height:15px}
 </style>
 </head>
 <body>
@@ -284,6 +296,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
       <article class="win w-about tilt-b nudge">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">about.txt</span></div>
+        <a class="cardlink" href="about.html" tabindex="-1" aria-hidden="true"></a>
         <div class="pad">
           <p class="about-en">I trust less in talent than in the work I am willing to do.</p>
           <p class="about-zh">我不自信于我的天赋，但自信于我的勤奋。</p>
@@ -295,6 +308,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
       <article class="win w-acad tilt-c out-l">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">academic</span></div>
+        <a class="cardlink" href="academic.html" tabindex="-1" aria-hidden="true"></a>
         <div class="pad">
           <div class="grade"><span>UCL Maths BSc, Year 1</span><span>First · 75+</span></div>
           <div class="grade"><span>A-Levels</span><span>A*A*A*A</span></div>
@@ -310,6 +324,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
       <article class="win w-res tilt-b">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">research</span></div>
+        <a class="cardlink" href="research.html" tabindex="-1" aria-hidden="true"></a>
         <div class="pad">
           <h3 style="font-size:19px">Robust cloud resource allocation</h3>
           <p class="meta">Question being formulated · with a PhD mentor</p>
@@ -325,6 +340,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
       <article class="win w-career tilt-e">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">career</span></div>
+        <a class="cardlink" href="experience.html" tabindex="-1" aria-hidden="true"></a>
         <div class="pad">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
             <span class="mono" style="color:var(--ink-3)">Experience</span>
@@ -339,6 +355,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
       <article class="win w-proj tilt-d">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">projects</span></div>
+        <a class="cardlink" href="projects.html" tabindex="-1" aria-hidden="true"></a>
         <div class="pad">
           <div class="entry"><b>Algorithms and Big-O</b><span>Sorting, timing, and a lower-bound argument.</span></div>
           <div class="entry"><b>Strategic M&amp;A valuation</b><span>DCF, comps and WACC on a semiconductor case.</span></div>
@@ -354,6 +371,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
       <article class="win w-blog tilt-b">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div>
+        <a class="cardlink" href="journal.html" tabindex="-1" aria-hidden="true"></a>
         <div class="pad">
           <!-- JOURNAL_PREVIEW_START -->
           <div class="entry"><span class="tag t2">journal</span><b>26summer的一半一半</b><span>早早过上了养生生活。</span></div>
@@ -379,6 +397,7 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 
       <article class="win guest-invite tilt-b out-r">
         <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">guestbook.exe</span></div>
+        <a class="cardlink" href="guestbook.html" tabindex="-1" aria-hidden="true"></a>
         <div class="pad">
           <p class="hello">YOU MADE IT THIS FAR</p>
           <h3>Leave a little proof<br>you were here.</h3>

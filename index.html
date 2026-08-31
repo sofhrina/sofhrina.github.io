@@ -77,18 +77,18 @@ a{color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* ---------- the dock : one parchment strip, same at every width ---------- */
-.maprail{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:70;
+.maprail{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:70;
   max-width:calc(100vw - 22px);font-family:"IBM Plex Mono",monospace}
-.maprail ol{list-style:none;margin:0;padding:6px;display:flex;gap:4px;
-  border:1px solid #C4AC7E;border-radius:13px;
+.maprail ol{list-style:none;margin:0;padding:9px;display:flex;gap:6px;
+  border:1px solid #C4AC7E;border-radius:17px;
   background:linear-gradient(178deg,#F1E5C9,#DFCFA6);
   box-shadow:0 14px 32px rgba(30,10,60,.4),0 1px 0 rgba(255,250,236,.75) inset;
   overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .maprail ol::-webkit-scrollbar{display:none}
 .mtab{position:relative;display:block;white-space:nowrap;text-decoration:none;
-  color:#6B5638;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
-  padding:9px 13px;border-radius:8px;transition:color .2s ease,background .2s ease}
-.mtab::before{content:"";position:absolute;inset:0;border-radius:8px;pointer-events:none;opacity:.4;
+  color:#6B5638;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  padding:14px 20px;border-radius:11px;transition:color .2s ease,background .2s ease}
+.mtab::before{content:"";position:absolute;inset:0;border-radius:11px;pointer-events:none;opacity:.4;
   background:repeating-linear-gradient(64deg,rgba(120,94,52,.13) 0 1px,transparent 1px 9px)}
 .mtab:hover{color:#3B2D16;background:rgba(255,251,238,.72)}
 .mtab[aria-current="page"]{color:#2C2110;background:#FCF6E6;
@@ -275,6 +275,10 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
   text-transform:uppercase;cursor:pointer;transition:transform .2s var(--spring)}
 .oath-go:hover{transform:translateY(-2px)}
 .oath.wrong{animation:nope .42s}
+.oath.open .oath-lbl,.oath.open .oath-in{display:none}
+.oath.open{justify-content:center}
+.oath.open .oath-go{flex:1;padding:9px 12px;font-size:9.5px}
+
 @keyframes nope{25%{transform:rotate(-1deg) translateX(-6px)}75%{transform:rotate(-1deg) translateX(6px)}}
 
 .steps{position:fixed;inset:0;width:100%;height:100%;z-index:85;pointer-events:none;
@@ -315,7 +319,7 @@ body.mischief .marauders{opacity:1;visibility:visible;transform:translate(-50%,-
   .mr-2{font-size:8px;letter-spacing:.18em;margin:8px 0 6px}
   .mr-3{font-size:27px}
   }
-.screen{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+.screen{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
@@ -604,27 +608,23 @@ body.mischief .marauders{opacity:1;visibility:visible;transform:translate(-50%,-
   if (oath) {
     var field = document.getElementById('oath-in'),
         go    = oath.querySelector('.oath-go'),
-        label = oath.querySelector('.oath-lbl'),
         open  = false;
 
     /* any of the words that finish "I am up to no good" counts */
     var ACCEPT = /(^|\s)(up|no|good|no\s+good|up\s+to\s+no\s+good|i\s+am\s+up\s+to\s+no\s+good)(\s|$)/i;
-    var CLOSE  = /mischief\s+managed/i;
 
     function openMap(){
       open = true;
       document.body.classList.add('mischief');
+      oath.classList.add('open');
       field.value = '';
-      field.placeholder = 'mischief managed';
-      label.textContent = 'To put it away, say';
-      go.textContent = 'Done';
+      go.textContent = 'Mischief managed';
     }
     function closeMap(){
       open = false;
       document.body.classList.remove('mischief');
+      oath.classList.remove('open');
       field.value = '';
-      field.placeholder = '\u2026';
-      label.textContent = 'I solemnly swear that';
       go.textContent = 'Swear';
     }
     function reject(){
@@ -634,8 +634,8 @@ body.mischief .marauders{opacity:1;visibility:visible;transform:translate(-50%,-
     oath.addEventListener('submit', function(e){
       e.preventDefault();
       var v = field.value.trim();
+      if (open) return closeMap();
       if (!v) return reject();
-      if (open) { return CLOSE.test(v) ? closeMap() : reject(); }
       if (ACCEPT.test(v)) openMap(); else reject();
     });
   }

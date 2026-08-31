@@ -105,6 +105,8 @@ a{color:inherit}
 .win{background:#fff;border-radius:16px;box-shadow:0 16px 40px rgba(30,10,60,.28),0 2px 6px rgba(30,10,60,.14);overflow:hidden;margin-bottom:9px;transition:transform .32s var(--spring),box-shadow .32s ease}
 .win:hover{transform:translateY(-6px) rotate(0deg) scale(1.012);box-shadow:0 30px 62px rgba(30,10,60,.36);z-index:20;position:relative}
 .bar{display:flex;align-items:center;gap:7px;padding:9px 13px;border-bottom:1px solid var(--hair);user-select:none}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.d1{background:#FF5F57}.d2{background:#FEBC2E}.d3{background:#28C840}
 .bar .t{margin-left:6px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);letter-spacing:.04em}
 .pad{padding:12px 17px}
 .tilt-a{transform:rotate(-1.5deg)}.tilt-b{transform:rotate(1.1deg)}.tilt-c{transform:rotate(-2.2deg)}
@@ -231,102 +233,6 @@ section .kicker{color:var(--ink-3);margin:0 0 18px;font-size:14.5px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 @media(max-width:1499px){.screen{padding-bottom:calc(84px + env(safe-area-inset-bottom))}}
-
-/* ===== Marauder's Map skin : the desk is the map ===== */
-:root{
-  --map-paper:#E8D6B0; --map-paper-2:#DCC69A; --map-paper-3:#CBB07E;
-  --map-card:#F3E8CC; --map-card-2:#EFE1BE;
-  --map-ink:#33260F; --map-ink-2:#5E4A28; --map-ink-3:#8A7148;
-  --map-rule:#C2A87C; --map-edge:#B2925F;
-  /* the old tokens are remapped so inline styles follow the map as well */
-  --ink:#33260F; --ink-2:#5E4A28; --ink-3:#8A7148;
-  --hair:#C2A87C; --cream:#F3E8CC; --cream-2:#E8D6B0;
-}
-body{background:var(--map-paper-2);color:var(--map-ink)}
-
-.screen{
-  background:
-    radial-gradient(120% 90% at 12% 8%, rgba(255,247,225,.85) 0%, rgba(255,247,225,0) 55%),
-    radial-gradient(90% 70% at 88% 92%, rgba(150,112,58,.30) 0%, rgba(150,112,58,0) 60%),
-    radial-gradient(60% 45% at 78% 12%, rgba(140,102,48,.20) 0%, rgba(140,102,48,0) 70%),
-    linear-gradient(168deg,#EFDFBC 0%,var(--map-paper) 42%,var(--map-paper-2) 78%,var(--map-paper-3) 100%);
-}
-/* fibres and fold creases, kept faint enough to read type over */
-.screen::before{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background:
-    repeating-linear-gradient(97deg, rgba(120,92,48,.07) 0 1px, transparent 1px 7px),
-    repeating-linear-gradient(-12deg, rgba(120,92,48,.05) 0 1px, transparent 1px 13px),
-    linear-gradient(90deg, rgba(120,92,48,.16) 0 1px, transparent 1px) 33.3% 0/33.3% 100% repeat-x;
-}
-/* a burnt, uneven edge rather than a printed rectangle */
-.screen::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  box-shadow:inset 0 0 90px rgba(92,66,28,.42), inset 0 0 22px rgba(92,66,28,.30);
-}
-
-.maptrail{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.maptrail .route{fill:none;stroke:var(--map-ink);stroke-width:1.6;stroke-dasharray:7 9;stroke-linecap:round;opacity:.13}
-.maptrail .pf{fill:var(--map-ink);opacity:.15}
-@media(max-width:900px){.maptrail{display:none}}
-
-.stage{position:relative;z-index:1}
-
-/* cards become places drawn on the map */
-.win{
-  background:linear-gradient(176deg,var(--map-card),var(--map-card-2));
-  border:1px solid var(--map-edge);border-radius:5px;
-  box-shadow:0 10px 22px rgba(74,52,20,.22),0 1px 0 rgba(255,248,228,.7) inset;
-}
-.win:hover{box-shadow:0 18px 34px rgba(74,52,20,.3),0 1px 0 rgba(255,248,228,.7) inset}
-.w-name,.guest-invite{background:linear-gradient(176deg,#F8EFD8,#F0E2C1);border:1px solid var(--map-edge)}
-
-/* the title bar is now an ink label with a rule under it */
-.bar{padding:8px 14px 6px;border-bottom:1px solid var(--map-rule);background:transparent}
-.bar .t{margin-left:0;color:var(--map-ink-2);font-size:10px;letter-spacing:.19em;text-transform:uppercase}
-.bar .t::before{content:"\2732\00a0\00a0";color:var(--map-edge);font-size:8px;vertical-align:1px}
-
-h1,h2,h3{color:var(--map-ink)}
-.w-name .rule{background:var(--map-ink);height:2px}
-.mono,.meta,.entry span,.role span,.grade,.w-about .about-zh{color:var(--map-ink-2)}
-.entry b,.role b,.grade span:first-child{color:var(--map-ink)}
-.w-about .about-en{color:var(--map-ink)}
-.entry,.grade,.divider{border-color:var(--map-rule)}
-.grade span:last-child{color:var(--map-ink-2);font-weight:500}
-.more{color:var(--map-ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-.more:hover{color:#7A5A22}
-.tile{background:rgba(120,92,48,.14);color:var(--map-ink-2);border-radius:4px}
-.chip{background:var(--map-ink);color:#F6EDD6;border-radius:3px;letter-spacing:.09em}
-.cvbtn{background:rgba(255,250,235,.7);border-color:var(--map-edge);border-radius:4px;color:var(--map-ink)}
-.cvbtn:hover{background:var(--map-ink);border-color:var(--map-ink);color:#F6EDD6}
-.guest-invite .hello{color:var(--map-ink-2)}
-.guest-invite p{color:var(--map-ink-2)}
-.trace-link{background:var(--map-ink);color:#F6EDD6;border-radius:3px;box-shadow:0 3px 0 #1D1408}
-.trace-link:hover{box-shadow:0 5px 0 #1D1408}
-
-/* wax-seal red for the notes pinned to the map */
-.sticky{background:linear-gradient(176deg,#E8C97E,#DDB962);box-shadow:0 8px 18px rgba(74,52,20,.3)}
-.sticky p,.sticky small{color:#463008}
-.contact-strip{background:var(--map-ink);color:#F6EDD6;box-shadow:0 8px 18px rgba(74,52,20,.34)}
-.contact-strip a{color:#F6EDD6}
-
-.social a{background:linear-gradient(176deg,var(--map-card),var(--map-card-2));border:1px solid var(--map-edge);border-radius:6px;color:var(--map-ink);box-shadow:0 6px 14px rgba(74,52,20,.24)}
-.cat{filter:sepia(.7) saturate(.8) brightness(.55)}
-.catsay{background:var(--map-ink);color:#F6EDD6}
-
-/* leftovers still wearing the old palette */
-.tag{background:rgba(120,92,48,.15);color:var(--map-ink-2)}
-.tag.t2{background:rgba(120,92,48,.15);color:var(--map-ink-2)}
-.prev{background:var(--map-card);border:1px solid var(--map-edge);border-radius:6px;box-shadow:0 16px 34px rgba(74,52,20,.34)}
-.prev .cap{color:var(--map-ink-2)}
-.prev .cap b{color:var(--map-ink)}
-.prev img{border-radius:3px}
-
-/* the rail is part of the same sheet, so it needs a firmer edge to read as a tab */
-.mtab{border-color:var(--map-ink-3);border-radius:4px;color:var(--map-ink-2);background:linear-gradient(178deg,#F7EDD3,#E4D2A8);box-shadow:0 2px 6px rgba(74,52,20,.26)}
-.mtab[aria-current="page"]{color:var(--map-ink);background:linear-gradient(178deg,#FFFAEC,#F5EACB);border-color:var(--map-ink);box-shadow:0 4px 10px rgba(74,52,20,.34)}
-.mtab .step path{fill:var(--map-ink)}
-@media(max-width:1499px){.maprail ol{border-color:var(--map-edge);background:linear-gradient(178deg,#EFE2C2,#DFCDA4)}}
 </style>
 </head>
 <body>
@@ -349,55 +255,13 @@ h1,h2,h3{color:var(--map-ink)}
 
 <div class="screen">
 
-  <svg class="maptrail" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-    <path class="route" d="M150 250 Q780 120 1250 320"/>
-    <path class="route" d="M210 760 Q760 880 1330 690"/>
-    <path class="route" d="M1380 180 Q1520 470 1330 860"/>
-    <g class="pf" transform="translate(196.7 232.6) rotate(-100.6)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(294.4 232.3) rotate(-98.5)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(385.5 204.3) rotate(-96.3)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(478.2 211.9) rotate(-94.0)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(566.8 191.5) rotate(-91.6)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(654.3 207.1) rotate(-89.0)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(740.5 194.5) rotate(-86.4)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(822.8 217.8) rotate(-83.6)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(906.7 213.2) rotate(-80.7)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(983.6 244.0) rotate(-77.8)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1065.4 247.6) rotate(-74.7)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1136.9 285.8) rotate(-71.7)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1216.5 297.7) rotate(-68.5)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(250.9 760.3) rotate(-78.8)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(326.8 790.1) rotate(-81.1)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(408.0 785.0) rotate(-83.3)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(485.6 808.6) rotate(-85.6)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(565.9 797.1) rotate(-87.9)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(645.3 814.4) rotate(-90.2)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(724.7 796.6) rotate(-92.4)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(805.7 807.6) rotate(-94.7)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(884.3 783.5) rotate(-96.9)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(966.9 788.0) rotate(-99.1)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1044.7 757.8) rotate(-101.3)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1128.9 755.8) rotate(-103.4)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1206.0 719.4) rotate(-105.4)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1291.7 710.8) rotate(-107.4)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1401.9 209.5) rotate(-22.4)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1409.8 281.6) rotate(-15.5)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1440.2 347.6) rotate(-8.6)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1431.0 421.0) rotate(-2.0)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1445.5 495.6) rotate(4.2)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1420.0 570.4) rotate(10.0)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1417.8 653.1) rotate(15.2)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1376.6 730.1) rotate(19.9)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-    <g class="pf" transform="translate(1357.4 820.2) rotate(24.1)"><ellipse rx="4.2" ry="6.4" cy="-4"/><ellipse rx="3.1" ry="4.2" cy="5.2"/></g>
-  </svg>
-
   <div class="stage" id="desk">
 
     <!-- ============ LEFT : who I am ============ -->
     <div class="col col-l">
 
       <article class="win w-name tilt-a out-l">
-        <div class="bar"><span class="t">hello.txt</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">hello.txt</span></div>
         <div class="pad">
           <h1 class="big">Huiru<br>Feng</h1>
           <div class="rule"></div>
@@ -419,7 +283,7 @@ h1,h2,h3{color:var(--map-ink)}
       </div>
 
       <article class="win w-about tilt-b nudge">
-        <div class="bar"><span class="t">about.txt</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">about.txt</span></div>
         <div class="pad">
           <p class="about-en">I trust less in talent than in the work I am willing to do.</p>
           <p class="about-zh">我不自信于我的天赋，但自信于我的勤奋。</p>
@@ -430,7 +294,7 @@ h1,h2,h3{color:var(--map-ink)}
       <aside class="sticky s1"><p>The Best is Yet to Come</p><small>signature</small></aside>
 
       <article class="win w-acad tilt-c out-l">
-        <div class="bar"><span class="t">academic</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">academic</span></div>
         <div class="pad">
           <div class="grade"><span>UCL Maths BSc, Year 1</span><span>First · 75+</span></div>
           <div class="grade"><span>A-Levels</span><span>A*A*A*A</span></div>
@@ -445,7 +309,7 @@ h1,h2,h3{color:var(--map-ink)}
     <div class="col col-c">
 
       <article class="win w-res tilt-b">
-        <div class="bar"><span class="t">research</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">research</span></div>
         <div class="pad">
           <h3 style="font-size:19px">Robust cloud resource allocation</h3>
           <p class="meta">Question being formulated · with a PhD mentor</p>
@@ -460,7 +324,7 @@ h1,h2,h3{color:var(--map-ink)}
       </article>
 
       <article class="win w-career tilt-e">
-        <div class="bar"><span class="t">career</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">career</span></div>
         <div class="pad">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
             <span class="mono" style="color:var(--ink-3)">Experience</span>
@@ -474,7 +338,7 @@ h1,h2,h3{color:var(--map-ink)}
 
 
       <article class="win w-proj tilt-d">
-        <div class="bar"><span class="t">projects</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">projects</span></div>
         <div class="pad">
           <div class="entry"><b>Algorithms and Big-O</b><span>Sorting, timing, and a lower-bound argument.</span></div>
           <div class="entry"><b>Strategic M&amp;A valuation</b><span>DCF, comps and WACC on a semiconductor case.</span></div>
@@ -489,7 +353,7 @@ h1,h2,h3{color:var(--map-ink)}
     <div class="col col-r">
 
       <article class="win w-blog tilt-b">
-        <div class="bar"><span class="t">journal</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">journal</span></div>
         <div class="pad">
           <!-- JOURNAL_PREVIEW_START -->
           <div class="entry"><span class="tag t2">journal</span><b>26summer的一半一半</b><span>早早过上了养生生活。</span></div>
@@ -500,7 +364,7 @@ h1,h2,h3{color:var(--map-ink)}
 
 
       <article class="win w-cv tilt-d nudge">
-        <div class="bar"><span class="t">cv</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">cv</span></div>
         <div class="pad" style="padding:13px 16px">
           <p class="mono" style="margin:0;color:var(--ink-3)">One page · Aug 2026</p>
           <div class="cvrow">
@@ -514,7 +378,7 @@ h1,h2,h3{color:var(--map-ink)}
       </article>
 
       <article class="win guest-invite tilt-b out-r">
-        <div class="bar"><span class="t">guestbook.exe</span></div>
+        <div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="t">guestbook.exe</span></div>
         <div class="pad">
           <p class="hello">YOU MADE IT THIS FAR</p>
           <h3>Leave a little proof<br>you were here.</h3>

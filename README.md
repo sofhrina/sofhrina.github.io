@@ -1,4 +1,4 @@
-# Huiru Feng — Personal Website
+# Huiru Feng · Personal Website
 
 Source files for Huiru Feng's personal website.
 

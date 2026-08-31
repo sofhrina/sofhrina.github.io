@@ -13,7 +13,7 @@ const requiredFiles = [
   'rest.html',
   'library.html',
   'interior.css',
-  'assets/ui/hp-cursor.png',
+  'assets/ui/wand-cursor.png',
   'assets/about/nancy-wheeler.jpg',
   'assets/about/jodie-foster.jpg',
   'assets/about/miao-jing.jpg',
